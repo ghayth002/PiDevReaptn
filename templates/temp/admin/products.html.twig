@@ -1,0 +1,71 @@
+{% extends 'temp/admin/base.html.twig' %}
+
+{% block admin_content %}
+    <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h3">Products</h1>
+            <a href="{{ path('admin_product_new') }}" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Add New Product
+            </a>
+        </div>
+
+        {# Debug info #}
+        <div class="alert alert-info">
+            Number of products: {{ products|length }}
+        </div>
+
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Image</th>
+                                <th>Category</th>
+                                <th>Type</th>
+                                <th>Quantity</th>
+                                <th>Weight</th>
+                                <th>Price</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if products is empty %}
+                                <tr>
+                                    <td colspan="8" class="text-center">No products found</td>
+                                </tr>
+                            {% else %}
+                                {% for product in products %}
+                                    <tr>
+                                        <td>{{ product.id }}</td>
+                                        <td>
+                                            {% if product.image %}
+                                                <img src="{{ asset(product.image) }}" alt="{{ product.category }}" style="height: 50px;">
+                                            {% else %}
+                                                <img src="{{ asset('img/product-1.jpg') }}" alt="{{ product.category }}" style="height: 50px;">
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ product.category }}</td>
+                                        <td>{{ product.type ? product.type.productionMethod : 'N/A' }}</td>
+                                        <td>{{ product.quantity }}</td>
+                                        <td>{{ product.weight }}kg</td>
+                                        <td>€{{ product.price }}</td>
+                                        <td>
+                                            <a href="{{ path('admin_product_edit', {id: product.id}) }}" class="btn btn-sm btn-info">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="{{ path('admin_product_delete', {id: product.id}) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

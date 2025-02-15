@@ -313,6 +313,6 @@ $context["trace"], "level", [], "any", false, false, false, 57) == 2)) {
     Note: These matching logs are based on the current router configuration,
     which might differ from the configuration used when profiling this request.
 </p>
-", "@WebProfiler/Router/panel.html.twig", "C:\\Users\\asus\\Desktop\\PI2025\\pi2025\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Router\\panel.html.twig");
+", "@WebProfiler/Router/panel.html.twig", "C:\\Users\\ghayt\\Downloads\\Reaptn\\Reaptn\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Router\\panel.html.twig");
     }
 }

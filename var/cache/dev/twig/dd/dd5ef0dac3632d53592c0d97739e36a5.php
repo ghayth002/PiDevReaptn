@@ -225,7 +225,7 @@ class __TwigTemplate_2d24a949b171c6be0012c1a2385bafe2 extends Template
                 <nav class=\"navbar navbar-light bg-white navbar-expand-xl\">
                     <a href=\"";
         // line 66
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("index.html"), "html", null, true);
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_temp_index");
         yield "\" class=\"navbar-brand\"><h1 class=\"text-primary display-6\">Fruitables</h1></a>
                     <button class=\"navbar-toggler py-2 px-3\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarCollapse\">
                         <span class=\"fa fa-bars text-primary\"></span>
@@ -235,49 +235,46 @@ class __TwigTemplate_2d24a949b171c6be0012c1a2385bafe2 extends Template
                         
                             <a href=\"";
         // line 73
-        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("index.html");
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_temp_index");
         yield "\" class=\"nav-item nav-link active\">Home</a>
                             <a href=\"";
         // line 74
-        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("shop.html");
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_temp_shop");
         yield "\" class=\"nav-item nav-link\">Shop</a>
                             <a href=\"";
         // line 75
-        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("shop-detail.html");
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_temp_shop_detail", ["id" => 1]);
         yield "\" class=\"nav-item nav-link\">Shop Detail</a>
                             <div class=\"nav-item dropdown\">
                                 <a href=\"#\" class=\"nav-link dropdown-toggle\" data-bs-toggle=\"dropdown\">Pages</a>
                                 <div class=\"dropdown-menu m-0 bg-secondary rounded-0\">
                                     <a href=\"";
         // line 79
-        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("cart.html");
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_temp_cart");
         yield "\" class=\"dropdown-item\">Cart</a>
                                     <a href=\"";
         // line 80
-        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("chackout.html");
-        yield "\" class=\"dropdown-item\">Chackout</a>
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_temp_checkout");
+        yield "\" class=\"dropdown-item\">Checkout</a>
                                     <a href=\"";
         // line 81
-        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("testimonial.html");
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_temp_testimonial");
         yield "\" class=\"dropdown-item\">Testimonial</a>
                                     <a href=\"";
         // line 82
-        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("404.html");
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_temp_404");
         yield "\" class=\"dropdown-item\">404 Page</a>
                                 </div>
                                 
                             </div>
                             <a href=\"";
         // line 86
-        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("contact.html");
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_temp_contact");
         yield "\" class=\"nav-item nav-link\">Contact</a>
                         </div>
                         <div class=\"d-flex m-3 me-0\">
                             <button class=\"btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4\" data-bs-toggle=\"modal\" data-bs-target=\"#searchModal\"><i class=\"fas fa-search text-primary\"></i></button>
-                            <a href=\"";
-        // line 90
-        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("#");
-        yield "\" class=\"position-relative me-4 my-auto\">
+                            <a href=\"#\" class=\"position-relative me-4 my-auto\">
                                 <i class=\"fa fa-shopping-bag fa-2x\"></i>
                                 <span class=\"position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1\" style=\"top: -5px; left: 15px; height: 20px; min-width: 20px;\">3</span>
                             </a>
@@ -1618,7 +1615,7 @@ class __TwigTemplate_2d24a949b171c6be0012c1a2385bafe2 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  1596 => 1222,  1590 => 1219,  1586 => 1218,  1582 => 1217,  1578 => 1216,  1574 => 1215,  1570 => 1214,  1567 => 1213,  1554 => 1212,  1541 => 1224,  1539 => 1212,  1505 => 1181,  1415 => 1094,  1387 => 1069,  1359 => 1044,  1278 => 966,  1258 => 949,  1238 => 932,  1218 => 915,  1196 => 896,  1172 => 875,  1148 => 854,  1124 => 833,  1100 => 812,  1076 => 791,  1045 => 763,  1010 => 731,  993 => 717,  976 => 703,  959 => 689,  942 => 675,  925 => 661,  908 => 647,  891 => 633,  865 => 610,  849 => 597,  833 => 584,  799 => 553,  780 => 537,  761 => 521,  734 => 497,  715 => 481,  688 => 457,  669 => 441,  642 => 417,  623 => 401,  596 => 377,  577 => 361,  558 => 345,  539 => 329,  520 => 313,  501 => 297,  482 => 281,  463 => 265,  340 => 145,  333 => 141,  279 => 90,  272 => 86,  265 => 82,  261 => 81,  257 => 80,  253 => 79,  246 => 75,  242 => 74,  238 => 73,  228 => 66,  200 => 40,  187 => 39,  174 => 31,  168 => 28,  161 => 24,  157 => 23,  151 => 20,  147 => 19,  141 => 16,  137 => 15,  133 => 14,  129 => 12,  116 => 11,  93 => 6,  79 => 1227,  77 => 39,  69 => 33,  67 => 11,  59 => 6,  52 => 1,);
+        return array (  1593 => 1222,  1587 => 1219,  1583 => 1218,  1579 => 1217,  1575 => 1216,  1571 => 1215,  1567 => 1214,  1564 => 1213,  1551 => 1212,  1538 => 1224,  1536 => 1212,  1502 => 1181,  1412 => 1094,  1384 => 1069,  1356 => 1044,  1275 => 966,  1255 => 949,  1235 => 932,  1215 => 915,  1193 => 896,  1169 => 875,  1145 => 854,  1121 => 833,  1097 => 812,  1073 => 791,  1042 => 763,  1007 => 731,  990 => 717,  973 => 703,  956 => 689,  939 => 675,  922 => 661,  905 => 647,  888 => 633,  862 => 610,  846 => 597,  830 => 584,  796 => 553,  777 => 537,  758 => 521,  731 => 497,  712 => 481,  685 => 457,  666 => 441,  639 => 417,  620 => 401,  593 => 377,  574 => 361,  555 => 345,  536 => 329,  517 => 313,  498 => 297,  479 => 281,  460 => 265,  337 => 145,  330 => 141,  272 => 86,  265 => 82,  261 => 81,  257 => 80,  253 => 79,  246 => 75,  242 => 74,  238 => 73,  228 => 66,  200 => 40,  187 => 39,  174 => 31,  168 => 28,  161 => 24,  157 => 23,  151 => 20,  147 => 19,  141 => 16,  137 => 15,  133 => 14,  129 => 12,  116 => 11,  93 => 6,  79 => 1227,  77 => 39,  69 => 33,  67 => 11,  59 => 6,  52 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -1688,31 +1685,31 @@ class __TwigTemplate_2d24a949b171c6be0012c1a2385bafe2 extends Template
             </div>
             <div class=\"container px-0\">
                 <nav class=\"navbar navbar-light bg-white navbar-expand-xl\">
-                    <a href=\"{{asset('index.html')}}\" class=\"navbar-brand\"><h1 class=\"text-primary display-6\">Fruitables</h1></a>
+                    <a href=\"{{ path('app_temp_index') }}\" class=\"navbar-brand\"><h1 class=\"text-primary display-6\">Fruitables</h1></a>
                     <button class=\"navbar-toggler py-2 px-3\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarCollapse\">
                         <span class=\"fa fa-bars text-primary\"></span>
                     </button>
                     <div class=\"collapse navbar-collapse bg-white\" id=\"navbarCollapse\">
                         <div class=\"navbar-nav mx-auto\">
                         
-                            <a href=\"{{path('index.html')}}\" class=\"nav-item nav-link active\">Home</a>
-                            <a href=\"{{path('shop.html')}}\" class=\"nav-item nav-link\">Shop</a>
-                            <a href=\"{{path('shop-detail.html')}}\" class=\"nav-item nav-link\">Shop Detail</a>
+                            <a href=\"{{ path('app_temp_index') }}\" class=\"nav-item nav-link active\">Home</a>
+                            <a href=\"{{ path('app_temp_shop') }}\" class=\"nav-item nav-link\">Shop</a>
+                            <a href=\"{{ path('app_temp_shop_detail', {'id': 1}) }}\" class=\"nav-item nav-link\">Shop Detail</a>
                             <div class=\"nav-item dropdown\">
                                 <a href=\"#\" class=\"nav-link dropdown-toggle\" data-bs-toggle=\"dropdown\">Pages</a>
                                 <div class=\"dropdown-menu m-0 bg-secondary rounded-0\">
-                                    <a href=\"{{path('cart.html')}}\" class=\"dropdown-item\">Cart</a>
-                                    <a href=\"{{path('chackout.html')}}\" class=\"dropdown-item\">Chackout</a>
-                                    <a href=\"{{path('testimonial.html')}}\" class=\"dropdown-item\">Testimonial</a>
-                                    <a href=\"{{path('404.html')}}\" class=\"dropdown-item\">404 Page</a>
+                                    <a href=\"{{ path('app_temp_cart') }}\" class=\"dropdown-item\">Cart</a>
+                                    <a href=\"{{ path('app_temp_checkout') }}\" class=\"dropdown-item\">Checkout</a>
+                                    <a href=\"{{ path('app_temp_testimonial') }}\" class=\"dropdown-item\">Testimonial</a>
+                                    <a href=\"{{ path('app_temp_404') }}\" class=\"dropdown-item\">404 Page</a>
                                 </div>
                                 
                             </div>
-                            <a href=\"{{path('contact.html')}}\" class=\"nav-item nav-link\">Contact</a>
+                            <a href=\"{{ path('app_temp_contact') }}\" class=\"nav-item nav-link\">Contact</a>
                         </div>
                         <div class=\"d-flex m-3 me-0\">
                             <button class=\"btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4\" data-bs-toggle=\"modal\" data-bs-target=\"#searchModal\"><i class=\"fas fa-search text-primary\"></i></button>
-                            <a href=\"{{path('#')}}\" class=\"position-relative me-4 my-auto\">
+                            <a href=\"#\" class=\"position-relative me-4 my-auto\">
                                 <i class=\"fa fa-shopping-bag fa-2x\"></i>
                                 <span class=\"position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1\" style=\"top: -5px; left: 15px; height: 20px; min-width: 20px;\">3</span>
                             </a>
@@ -2852,6 +2849,6 @@ class __TwigTemplate_2d24a949b171c6be0012c1a2385bafe2 extends Template
     </body>
 
 </html>
-", "base.html.twig", "C:\\Users\\asus\\Desktop\\PI2025\\pi2025\\templates\\base.html.twig");
+", "base.html.twig", "C:\\Users\\ghayt\\Downloads\\Reaptn\\Reaptn\\templates\\base.html.twig");
     }
 }

@@ -1,0 +1,158 @@
+{% extends 'temp/base.html.twig' %}
+
+{% block title %}Checkout - Fruitables{% endblock %}
+
+{% block content %}
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">Checkout</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="{{ path('app_temp_index') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('app_temp_shop') }}">Shop</a></li>
+            <li class="breadcrumb-item active text-white">Checkout</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+
+    <!-- Checkout Page Start -->
+    <div class="container-fluid py-5">
+        <div class="container py-5">
+            {% for message in app.flashes('error') %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+            <h1 class="mb-4">Billing details</h1>
+            {{ form_start(form) }}
+                <div class="row g-5">
+                    <!-- Billing Form Section -->
+                    <div class="col-md-12 col-lg-6 col-xl-7">
+                        <div class="row">
+                            <div class="col-md-12 col-lg-6">
+                                <div class="form-item">
+                                    {{ form_label(form.firstName, 'First Name *') }}
+                                    {{ form_widget(form.firstName) }}
+                                    {{ form_errors(form.firstName) }}
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-6">
+                                <div class="form-item">
+                                    {{ form_label(form.lastName, 'Last Name *') }}
+                                    {{ form_widget(form.lastName) }}
+                                    {{ form_errors(form.lastName) }}
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-item">
+                                    {{ form_label(form.email, 'Email *') }}
+                                    {{ form_widget(form.email) }}
+                                    {{ form_errors(form.email) }}
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-item">
+                                    {{ form_label(form.phone, 'Phone *') }}
+                                    {{ form_widget(form.phone) }}
+                                    {{ form_errors(form.phone) }}
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-item">
+                                    {{ form_label(form.address, 'Address *') }}
+                                    {{ form_widget(form.address) }}
+                                    {{ form_errors(form.address) }}
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-6">
+                                <div class="form-item">
+                                    {{ form_label(form.city, 'City *') }}
+                                    {{ form_widget(form.city) }}
+                                    {{ form_errors(form.city) }}
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-6">
+                                <div class="form-item">
+                                    {{ form_label(form.state, 'State *') }}
+                                    {{ form_widget(form.state) }}
+                                    {{ form_errors(form.state) }}
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-6">
+                                <div class="form-item">
+                                    {{ form_label(form.zipCode, 'Zip Code *') }}
+                                    {{ form_widget(form.zipCode) }}
+                                    {{ form_errors(form.zipCode) }}
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-6">
+                                <div class="form-item">
+                                    {{ form_label(form.country, 'Country *') }}
+                                    {{ form_widget(form.country) }}
+                                    {{ form_errors(form.country) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Order Summary Section -->
+                    <div class="col-md-12 col-lg-6 col-xl-5">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Products</th>
+                                        <th>Quantity</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in cartItems %}
+                                        <tr>
+                                            <td>{{ item.product.category }}</td>
+                                            <td>{{ item.quantity }}</td>
+                                            <td>${{ (item.product.price * item.quantity)|number_format(2, '.', ',') }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th colspan="2">Total</th>
+                                        <th>${{ total|number_format(2, '.', ',') }}</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-12">
+                                <h3 class="mb-3">Payment Method</h3>
+                                <div class="row g-4 text-center align-items-center justify-content-center border-bottom py-3">
+                                    <div class="col-12">
+                                        {{ form_widget(form.paymentMethod) }}
+                                        {{ form_errors(form.paymentMethod) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <button type="submit" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">Place Order</button>
+                        </div>
+                    </div>
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+    <!-- Checkout Page End -->
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/main.js') }}"></script>
+{% endblock %}

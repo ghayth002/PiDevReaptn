@@ -1,0 +1,64 @@
+{% extends 'temp/admin/base.html.twig' %}
+
+{% block admin_content %}
+    <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h3">{{ type ? 'Edit Product Type' : 'New Product Type' }}</h1>
+            <a href="{{ path('admin_product_types') }}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back to Product Types
+            </a>
+        </div>
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                {{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                {{ form_label(form.season) }}
+                                {{ form_widget(form.season) }}
+                                {{ form_errors(form.season) }}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                {{ form_label(form.productionMethod) }}
+                                {{ form_widget(form.productionMethod) }}
+                                {{ form_errors(form.productionMethod) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                {{ form_label(form.harvestDate) }}
+                                {{ form_widget(form.harvestDate) }}
+                                {{ form_errors(form.harvestDate) }}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                {{ form_label(form.preservationDuration) }}
+                                {{ form_widget(form.preservationDuration) }}
+                                {{ form_errors(form.preservationDuration) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> {{ type ? 'Update' : 'Create' }} Product Type
+                        </button>
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

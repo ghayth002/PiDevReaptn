@@ -1,0 +1,135 @@
+{% extends 'temp/base.html.twig' %}
+
+{% block title %}Cart - Fruitables{% endblock %}
+
+{% block content %}
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">Cart</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="{{ path('app_temp_index') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Pages</a></li>
+            <li class="breadcrumb-item active text-white">Cart</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+
+    <!-- Cart Page Start -->
+    <div class="container-fluid py-5">
+        <div class="container py-5">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Products</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Handle</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% if items|length > 0 %}
+                            {% for item in items %}
+                                <tr>
+                                    <th scope="row">
+                                        <div class="d-flex align-items-center">
+                                            <img src="{{ asset(item.product.image) }}" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="{{ item.product.category }}">
+                                        </div>
+                                    </th>
+                                    <td>
+                                        <p class="mb-0 mt-4">{{ item.product.category }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="mb-0 mt-4">${{ item.product.price }}</p>
+                                    </td>
+                                    <td>
+                                        <div class="input-group quantity mt-4" style="width: 100px;">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-sm btn-minus rounded-circle bg-light border" 
+                                                        data-url="{{ path('app_cart_update', {'id': item.product.id}) }}">
+                                                    <i class="fa fa-minus"></i>
+                                                </button>
+                                            </div>
+                                            <input type="text" class="form-control form-control-sm text-center border-0" value="{{ item.quantity }}">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-sm btn-plus rounded-circle bg-light border"
+                                                        data-url="{{ path('app_cart_update', {'id': item.product.id}) }}">
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p class="mb-0 mt-4">${{ item.product.price * item.quantity }}</p>
+                                    </td>
+                                    <td>
+                                        <a href="{{ path('app_cart_remove', {'id': item.product.id}) }}" 
+                                           class="btn btn-md rounded-circle bg-light border mt-4">
+                                            <i class="fa fa-times text-danger"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            <tr>
+                                <td colspan="4" class="text-end">
+                                    <strong>Total:</strong>
+                                </td>
+                                <td>
+                                    <strong>${{ total }}</strong>
+                                </td>
+                                <td></td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="6" class="text-center py-4">
+                                    Your cart is empty
+                                </td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+            {% if items|length > 0 %}
+                <div class="row g-4 justify-content-end">
+                    <div class="col-8 text-end">
+                        <a href="{{ path('app_temp_shop') }}" class="btn border border-secondary rounded-pill px-4 py-3 text-primary">Continue Shopping</a>
+                        <a href="{{ path('app_temp_checkout') }}" class="btn border border-secondary rounded-pill px-4 py-3 text-primary">Proceed to Checkout</a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <!-- Cart Page End -->
+{% endblock %}
+
+{% block javascripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.btn-plus, .btn-minus').forEach(button => {
+        button.addEventListener('click', function() {
+            const url = this.dataset.url;
+            const input = this.closest('.quantity').querySelector('input');
+            const currentValue = parseInt(input.value);
+            const isPlus = this.classList.contains('btn-plus');
+            
+            const newValue = isPlus ? currentValue + 1 : Math.max(1, currentValue - 1);
+            
+            fetch(url + '?quantity=' + newValue, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.reload();
+                }
+            });
+        });
+    });
+});
+</script>
+{% endblock %}
