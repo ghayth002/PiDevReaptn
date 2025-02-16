@@ -82,13 +82,12 @@ class __TwigTemplate_3beb332da9b37c34a46798de6ce84fe9 extends Template
             </div>
             <div class=\"col-lg-3 col-md-6\">
                 <div class=\"d-flex flex-column text-start footer-item\">
-                    <h4 class=\"text-light mb-3\">Shop Info</h4>
-                    <a class=\"btn-link\" href=\"\">About Us</a>
-                    <a class=\"btn-link\" href=\"\">Contact Us</a>
-                    <a class=\"btn-link\" href=\"\">Privacy Policy</a>
-                    <a class=\"btn-link\" href=\"\">Terms & Condition</a>
-                    <a class=\"btn-link\" href=\"\">Return Policy</a>
-                    <a class=\"btn-link\" href=\"\">FAQs & Help</a>
+                    <h4 class=\"text-light mb-3\">Product Info</h4>
+                    <a class=\"btn-link\" href=\"\">Product details</a>
+                    <a class=\"btn-link\" href=\"\">Shopping Cart</a>
+                    <a class=\"btn-link\" href=\"\">Wishlist</a>
+                    <a class=\"btn-link\" href=\"\">Order History</a>
+                    <a class=\"btn-link\" href=\"\">International Orders</a>
                 </div>
             </div>
             <div class=\"col-lg-3 col-md-6\">
@@ -110,7 +109,7 @@ class __TwigTemplate_3beb332da9b37c34a46798de6ce84fe9 extends Template
                     <p>Phone: +0123 4567 8910</p>
                     <p>Payment Accepted</p>
                     <img src=\"";
-        // line 65
+        // line 64
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("img/payment.png"), "html", null, true);
         yield "\" class=\"img-fluid\" alt=\"\">
                 </div>
@@ -150,7 +149,7 @@ class __TwigTemplate_3beb332da9b37c34a46798de6ce84fe9 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  114 => 65,  48 => 1,);
+        return array (  113 => 64,  48 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -192,13 +191,12 @@ class __TwigTemplate_3beb332da9b37c34a46798de6ce84fe9 extends Template
             </div>
             <div class=\"col-lg-3 col-md-6\">
                 <div class=\"d-flex flex-column text-start footer-item\">
-                    <h4 class=\"text-light mb-3\">Shop Info</h4>
-                    <a class=\"btn-link\" href=\"\">About Us</a>
-                    <a class=\"btn-link\" href=\"\">Contact Us</a>
-                    <a class=\"btn-link\" href=\"\">Privacy Policy</a>
-                    <a class=\"btn-link\" href=\"\">Terms & Condition</a>
-                    <a class=\"btn-link\" href=\"\">Return Policy</a>
-                    <a class=\"btn-link\" href=\"\">FAQs & Help</a>
+                    <h4 class=\"text-light mb-3\">Product Info</h4>
+                    <a class=\"btn-link\" href=\"\">Product details</a>
+                    <a class=\"btn-link\" href=\"\">Shopping Cart</a>
+                    <a class=\"btn-link\" href=\"\">Wishlist</a>
+                    <a class=\"btn-link\" href=\"\">Order History</a>
+                    <a class=\"btn-link\" href=\"\">International Orders</a>
                 </div>
             </div>
             <div class=\"col-lg-3 col-md-6\">

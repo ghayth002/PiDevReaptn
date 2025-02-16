@@ -73,7 +73,7 @@ class __TwigTemplate_91cb474f30bdb3d2d8b177e2154fb004 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
 
-        yield "Shop - Fruitables";
+        yield "Products - Fruitables";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -99,22 +99,22 @@ class __TwigTemplate_91cb474f30bdb3d2d8b177e2154fb004 extends Template
         // line 6
         yield "    <!-- Single Page Header start -->
     <div class=\"container-fluid page-header py-5\">
-        <h1 class=\"text-center text-white display-6\">Shop</h1>
+        <h1 class=\"text-center text-white display-6\">Products</h1>
         <ol class=\"breadcrumb justify-content-center mb-0\">
             <li class=\"breadcrumb-item\"><a href=\"";
         // line 10
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_temp_index");
         yield "\">Home</a></li>
             <li class=\"breadcrumb-item\"><a href=\"#\">Pages</a></li>
-            <li class=\"breadcrumb-item active text-white\">Shop</li>
+            <li class=\"breadcrumb-item active text-white\">Products</li>
         </ol>
     </div>
     <!-- Single Page Header End -->
 
-    <!-- Fruits Shop Start-->
+    <!-- Products List Start-->
     <div class=\"container-fluid fruite py-5\">
         <div class=\"container py-5\">
-            <h1 class=\"mb-4\">Fresh fruits shop</h1>
+            <h1 class=\"mb-4\">Fresh Products</h1>
             <div class=\"row g-4\">
                 <div class=\"col-lg-12\">
                     <div class=\"row g-4\">
@@ -260,7 +260,7 @@ class __TwigTemplate_91cb474f30bdb3d2d8b177e2154fb004 extends Template
             </div>
         </div>
     </div>
-    <!-- Fruits Shop End-->
+    <!-- Products List End-->
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -299,24 +299,24 @@ class __TwigTemplate_91cb474f30bdb3d2d8b177e2154fb004 extends Template
     {
         return new Source("{% extends 'temp/base.html.twig' %}
 
-{% block title %}Shop - Fruitables{% endblock %}
+{% block title %}Products - Fruitables{% endblock %}
 
 {% block content %}
     <!-- Single Page Header start -->
     <div class=\"container-fluid page-header py-5\">
-        <h1 class=\"text-center text-white display-6\">Shop</h1>
+        <h1 class=\"text-center text-white display-6\">Products</h1>
         <ol class=\"breadcrumb justify-content-center mb-0\">
             <li class=\"breadcrumb-item\"><a href=\"{{ path('app_temp_index') }}\">Home</a></li>
             <li class=\"breadcrumb-item\"><a href=\"#\">Pages</a></li>
-            <li class=\"breadcrumb-item active text-white\">Shop</li>
+            <li class=\"breadcrumb-item active text-white\">Products</li>
         </ol>
     </div>
     <!-- Single Page Header End -->
 
-    <!-- Fruits Shop Start-->
+    <!-- Products List Start-->
     <div class=\"container-fluid fruite py-5\">
         <div class=\"container py-5\">
-            <h1 class=\"mb-4\">Fresh fruits shop</h1>
+            <h1 class=\"mb-4\">Fresh Products</h1>
             <div class=\"row g-4\">
                 <div class=\"col-lg-12\">
                     <div class=\"row g-4\">
@@ -392,7 +392,7 @@ class __TwigTemplate_91cb474f30bdb3d2d8b177e2154fb004 extends Template
             </div>
         </div>
     </div>
-    <!-- Fruits Shop End-->
+    <!-- Products List End-->
 {% endblock %}
 ", "temp/shop.html.twig", "C:\\Users\\ghayt\\PiDevReaptn\\templates\\temp\\shop.html.twig");
     }

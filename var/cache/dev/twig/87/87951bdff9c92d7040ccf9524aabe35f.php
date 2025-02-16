@@ -82,7 +82,7 @@ class __TwigTemplate_95aaf5fe391b6897cff76c44eefb9e5d extends Template
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_temp_shop");
         yield "\" class=\"nav-item nav-link ";
         yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 25, $this->source); })()), "request", [], "any", false, false, false, 25), "get", ["_route"], "method", false, false, false, 25) == "app_temp_shop")) ? ("active") : (""));
-        yield "\">Shop</a>
+        yield "\">Products</a>
                     <a href=\"";
         // line 26
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_temp_cart");
@@ -184,7 +184,7 @@ class __TwigTemplate_95aaf5fe391b6897cff76c44eefb9e5d extends Template
             <div class=\"collapse navbar-collapse bg-white\" id=\"navbarCollapse\">
                 <div class=\"navbar-nav mx-auto\">
                     <a href=\"{{ path('app_temp_index') }}\" class=\"nav-item nav-link {{ app.request.get('_route') == 'app_temp_index' ? 'active' : '' }}\">Home</a>
-                    <a href=\"{{ path('app_temp_shop') }}\" class=\"nav-item nav-link {{ app.request.get('_route') == 'app_temp_shop' ? 'active' : '' }}\">Shop</a>
+                    <a href=\"{{ path('app_temp_shop') }}\" class=\"nav-item nav-link {{ app.request.get('_route') == 'app_temp_shop' ? 'active' : '' }}\">Products</a>
                     <a href=\"{{ path('app_temp_cart') }}\" class=\"nav-item nav-link {{ app.request.get('_route') == 'app_temp_cart' ? 'active' : '' }}\">cart</a>
 
                 </div>
