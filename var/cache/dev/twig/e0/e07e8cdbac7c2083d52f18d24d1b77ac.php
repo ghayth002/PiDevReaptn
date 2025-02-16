@@ -142,13 +142,15 @@ class __TwigTemplate_91cb474f30bdb3d2d8b177e2154fb004 extends Template
             yield "                                        <option value=\"";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_temp_shop", ["type" => CoreExtension::getAttribute($this->env, $this->source, $context["type"], "id", [], "any", false, false, false, 37)]), "html", null, true);
             yield "\" ";
-            if ((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 37, $this->source); })()), "request", [], "any", false, false, false, 37), "get", ["type"], "method", false, false, false, 37) == CoreExtension::getAttribute($this->env, $this->source, $context["type"], "id", [], "any", false, false, false, 37))) {
+            if (( !(null === CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 37, $this->source); })()), "request", [], "any", false, false, false, 37), "get", ["type"], "method", false, false, false, 37)) && (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 37, $this->source); })()), "request", [], "any", false, false, false, 37), "get", ["type"], "method", false, false, false, 37) == CoreExtension::getAttribute($this->env, $this->source, $context["type"], "id", [], "any", false, false, false, 37)))) {
                 yield "selected";
             }
             yield ">
                                             ";
             // line 38
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["type"], "season", [], "any", false, false, false, 38), "html", null, true);
+            yield " - ";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["type"], "productionMethod", [], "any", false, false, false, 38), "html", null, true);
             yield "
                                         </option>
                                     ";
@@ -166,7 +168,7 @@ class __TwigTemplate_91cb474f30bdb3d2d8b177e2154fb004 extends Template
                             <div class=\"row g-4\">
                                 <div class=\"col-lg-12\">
                                     <div class=\"mb-3\">
-                                        <h4>Categories</h4>
+                                        <h4>Seasons</h4>
                                         <ul class=\"list-unstyled fruite-categorie\">
                                             ";
         // line 52
@@ -178,7 +180,7 @@ class __TwigTemplate_91cb474f30bdb3d2d8b177e2154fb004 extends Template
                                                     <div class=\"d-flex justify-content-between fruite-name\">
                                                         <a href=\"";
             // line 55
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_temp_shop", ["type" => CoreExtension::getAttribute($this->env, $this->source, $context["category"], "id", [], "any", false, false, false, 55)]), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_temp_shop", ["type" => CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["category"], "types", [], "any", false, false, false, 55), 0, [], "array", false, false, false, 55), "id", [], "any", false, false, false, 55)]), "html", null, true);
             yield "\">
                                                             <i class=\"fas ";
             // line 56
@@ -290,7 +292,7 @@ class __TwigTemplate_91cb474f30bdb3d2d8b177e2154fb004 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  254 => 89,  240 => 81,  236 => 80,  230 => 77,  225 => 75,  220 => 73,  215 => 70,  211 => 69,  202 => 62,  192 => 58,  185 => 56,  181 => 55,  177 => 53,  173 => 52,  160 => 41,  151 => 38,  142 => 37,  138 => 36,  134 => 35,  106 => 10,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  256 => 89,  242 => 81,  238 => 80,  232 => 77,  227 => 75,  222 => 73,  217 => 70,  213 => 69,  204 => 62,  194 => 58,  187 => 56,  183 => 55,  179 => 53,  175 => 52,  162 => 41,  151 => 38,  142 => 37,  138 => 36,  134 => 35,  106 => 10,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -331,8 +333,8 @@ class __TwigTemplate_91cb474f30bdb3d2d8b177e2154fb004 extends Template
                                 <select id=\"productType\" name=\"productType\" class=\"border-0 form-select-sm bg-light me-3\" onchange=\"window.location.href=this.value\">
                                     <option value=\"{{ path('app_temp_shop') }}\">All Types</option>
                                     {% for type in productTypes %}
-                                        <option value=\"{{ path('app_temp_shop', {'type': type.id}) }}\" {% if app.request.get('type') == type.id %}selected{% endif %}>
-                                            {{ type.season }}
+                                        <option value=\"{{ path('app_temp_shop', {'type': type.id}) }}\" {% if app.request.get('type') is not null and app.request.get('type') == type.id %}selected{% endif %}>
+                                            {{ type.season }} - {{ type.productionMethod }}
                                         </option>
                                     {% endfor %}
                                 </select>
@@ -344,12 +346,12 @@ class __TwigTemplate_91cb474f30bdb3d2d8b177e2154fb004 extends Template
                             <div class=\"row g-4\">
                                 <div class=\"col-lg-12\">
                                     <div class=\"mb-3\">
-                                        <h4>Categories</h4>
+                                        <h4>Seasons</h4>
                                         <ul class=\"list-unstyled fruite-categorie\">
                                             {% for category in categories %}
                                                 <li>
                                                     <div class=\"d-flex justify-content-between fruite-name\">
-                                                        <a href=\"{{ path('app_temp_shop', {'type': category.id}) }}\">
+                                                        <a href=\"{{ path('app_temp_shop', {'type': category.types[0].id}) }}\">
                                                             <i class=\"fas {{ category.icon }} me-2\"></i>{{ category.name }}
                                                         </a>
                                                         <span>({{ category.count }})</span>
@@ -392,6 +394,6 @@ class __TwigTemplate_91cb474f30bdb3d2d8b177e2154fb004 extends Template
     </div>
     <!-- Fruits Shop End-->
 {% endblock %}
-", "temp/shop.html.twig", "C:\\Users\\ghayt\\Downloads\\Reaptn\\Reaptn\\templates\\temp\\shop.html.twig");
+", "temp/shop.html.twig", "C:\\Users\\ghayt\\PiDevReaptn\\templates\\temp\\shop.html.twig");
     }
 }

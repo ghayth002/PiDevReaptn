@@ -313,6 +313,6 @@ class __TwigTemplate_8cb1d80f1e61fc5fecfbc227d065ac4e extends Template
         </div>
     </div>
 {% endblock %}
-", "temp/admin/stocks.html.twig", "C:\\Users\\ghayt\\Downloads\\Reaptn\\Reaptn\\templates\\temp\\admin\\stocks.html.twig");
+", "temp/admin/stocks.html.twig", "C:\\Users\\ghayt\\PiDevReaptn\\templates\\temp\\admin\\stocks.html.twig");
     }
 }

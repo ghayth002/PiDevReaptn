@@ -6,6 +6,7 @@ use App\Entity\Order;
 use App\Entity\OrderItem;
 use App\Entity\Product;
 use App\Entity\ProductType;
+use App\Entity\Stock;
 use App\Form\OrderType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -235,63 +236,54 @@ class PageController extends AbstractController
     }
 
     #[Route('/temp/shop', name: 'app_temp_shop')]
-    public function tempShop(Request $request,EntityManagerInterface $entityManager): Response
+    public function tempShop(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $categories = $entityManager->getRepository(ProductType::class)->findAll();
-        $products = $entityManager->getRepository(Product::class)->findAll();
-
-        // Transform categories to match template expectations
-        $formattedCategories = array_map(function($category) use ($products) {
-            $count = 0;
-            foreach ($products as $product) {
-                if ($product->getType() === $category) {
-                    $count++;
-                }
-            }
-            
-            return [
-                'id' => $category->getId(),
-                'name' => $category->getSeason(),
-                'count' => $count,
-                'icon' => $this->getCategoryIcon($category->getSeason())
-            ];
-        }, $categories);
-
-        // Transform products to match template expectations
-        $typeId = $request->query->get('type');
+        $selectedType = $request->query->get('type');
+        $productTypes = $entityManager->getRepository(ProductType::class)->findAll();
         
-        // Get categories (product types)
-        $categories = $entityManager->getRepository(ProductType::class)->findAll();
-        
-        // Build products query with optional type filter
-        $productsQuery = $entityManager->getRepository(Product::class)
-            ->createQueryBuilder('p');
-            
-        if ($typeId) {
-            $productsQuery->where('p.type = :typeId')
-                         ->setParameter('typeId', $typeId);
+        // Get products based on selected type
+        if ($selectedType) {
+            $products = $entityManager->getRepository(Product::class)
+                ->createQueryBuilder('p')
+                ->where('p.type = :type')
+                ->setParameter('type', $selectedType)
+                ->getQuery()
+                ->getResult();
+        } else {
+            $products = $entityManager->getRepository(Product::class)->findAll();
         }
-        
-        $formattedProducts = $productsQuery->getQuery()->getResult();
-        $formattedProducts = array_map(function($product) {
-            return [
-                'id' => $product->getId(),
-                'name' => $product->getCategory(),
-                'description' => 'Fresh product from our suppliers',
-                'price' => $product->getPrice(),
-                'image' => $product->getImage() ?? 'fruite-item-1.jpg',
-                'category' => $product->getType()->getSeason(),
-                'type' => [
-                    'id' => $product->getType()->getId(),
-                    'name' => $product->getType()->getSeason(),
-                    'productionMethod' => $product->getType()->getProductionMethod()
-                ]
-            ];
-        }, $products);
+
+        // Group categories by season
+        $seasonGroups = [];
+        foreach ($productTypes as $type) {
+            $season = strtolower($type->getSeason());
+            if (!isset($seasonGroups[$season])) {
+                $seasonGroups[$season] = [
+                    'id' => $type->getId(), // Use the first type ID for this season
+                    'name' => $type->getSeason(),
+                    'icon' => $this->getCategoryIcon($season),
+                    'count' => 0,
+                    'types' => []
+                ];
+            }
+            $seasonGroups[$season]['types'][] = $type;
+        }
+
+        // Count products for each season
+        foreach ($products as $product) {
+            $season = strtolower($product->getType()->getSeason());
+            if (isset($seasonGroups[$season])) {
+                $seasonGroups[$season]['count']++;
+            }
+        }
+
+        // Convert season groups to array
+        $formattedCategories = array_values($seasonGroups);
+
         return $this->render('temp/shop.html.twig', [
             'categories' => $formattedCategories,
-            'products' => $formattedProducts,
-            'productTypes' => $categories // Add this for the filter dropdown
+            'products' => $products,
+            'productTypes' => $productTypes
         ]);
     }
 
@@ -402,22 +394,53 @@ class PageController extends AbstractController
         return $this->redirectToRoute('app_admin_order_detail', ['id' => $order->id]);
     }
 
-    private function getCategoryIcon(string $categoryName): string
+    #[Route('/admin/product/delete/{id}', name: 'admin_product_delete')]
+    public function deleteProduct(int $id, EntityManagerInterface $entityManager): Response
     {
-        $icons = [
-            'Spring' => 'fa-seedling',
-            'Summer' => 'fa-sun',
-            'Fall' => 'fa-leaf',
-            'Winter' => 'fa-snowflake',
-            'All Season' => 'fa-calendar'
-        ];
-
-        foreach ($icons as $key => $icon) {
-            if (str_contains(strtolower($categoryName), strtolower($key))) {
-                return $icon;
+        try {
+            $product = $entityManager->getRepository(Product::class)->find($id);
+            if (!$product) {
+                $this->addFlash('error', 'Product not found.');
+                return $this->redirectToRoute('admin_products');
             }
+
+            // Check if product has related stock entries
+            $stockEntries = $entityManager->getRepository(Stock::class)->findBy(['product' => $product]);
+            
+            // Check if product is in any orders
+            $orderItems = $entityManager->getRepository(OrderItem::class)->findBy(['product' => $product]);
+
+            if (count($stockEntries) > 0) {
+                $this->addFlash('error', 'Cannot delete this product because it has stock entries. Please remove the stock entries first.');
+                return $this->redirectToRoute('admin_products');
+            }
+
+            if (count($orderItems) > 0) {
+                $this->addFlash('error', 'Cannot delete this product because it is associated with orders.');
+                return $this->redirectToRoute('admin_products');
+            }
+
+            // If no related entries exist, proceed with deletion
+            $entityManager->remove($product);
+            $entityManager->flush();
+            
+            $this->addFlash('success', 'Product deleted successfully!');
+
+        } catch (\Exception $e) {
+            $this->addFlash('error', 'An error occurred while trying to delete the product: ' . $e->getMessage());
         }
 
-        return 'fa-leaf'; // Default icon
+        return $this->redirectToRoute('admin_products');
+    }
+
+    private function getCategoryIcon(string $season): string
+    {
+        return match (strtolower($season)) {
+            'spring' => 'fa-leaf',
+            'summer' => 'fa-sun',
+            'autumn', 'fall' => 'fa-tree',
+            'winter' => 'fa-snowflake',
+            default => 'fa-seedling'
+        };
     }
 }

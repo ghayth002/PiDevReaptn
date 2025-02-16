@@ -612,6 +612,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 {% endblock %}
-", "temp/shop-detail.html.twig", "C:\\Users\\ghayt\\Downloads\\Reaptn\\Reaptn\\templates\\temp\\shop-detail.html.twig");
+", "temp/shop-detail.html.twig", "C:\\Users\\ghayt\\PiDevReaptn\\templates\\temp\\shop-detail.html.twig");
     }
 }
