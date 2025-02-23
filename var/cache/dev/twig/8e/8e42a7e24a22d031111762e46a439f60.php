@@ -220,227 +220,36 @@ class __TwigTemplate_2ca0f1906b83607c815f672d3592ede2 extends Template
                                     </div>
                                 </div>
                                 <div class=\"tab-pane\" id=\"nav-mission\" role=\"tabpanel\" aria-labelledby=\"nav-mission-tab\">
-                                    <!-- Add this section after the product details and before the reviews -->
-                                    <div class=\"col-lg-12 mt-5\">
-                                        <div class=\"card shadow\">
-                                            <div class=\"card-header bg-primary text-white\">
-                                                <h4 class=\"mb-0\">
-                                                    <i class=\"fas fa-robot me-2\"></i> AI-Powered Recommendations
-                                                </h4>
-                                            </div>
-                                            <div class=\"card-body\">
-                                                <!-- Seasonal Recommendations -->
-                                                ";
-        // line 107
-        if ((Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, (isset($context["recommendations"]) || array_key_exists("recommendations", $context) ? $context["recommendations"] : (function () { throw new RuntimeError('Variable "recommendations" does not exist.', 107, $this->source); })()), "seasonal", [], "any", false, false, false, 107)) > 0)) {
-            // line 108
-            yield "                                                <div class=\"mb-4\">
-                                                    <h5 class=\"text-success\">
-                                                        <i class=\"fas fa-calendar-alt me-2\"></i> Seasonal Picks
-                                                    </h5>
-                                                    <div class=\"row g-4\">
-                                                        ";
-            // line 113
-            $context['_parent'] = $context;
-            $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["recommendations"]) || array_key_exists("recommendations", $context) ? $context["recommendations"] : (function () { throw new RuntimeError('Variable "recommendations" does not exist.', 113, $this->source); })()), "seasonal", [], "any", false, false, false, 113));
-            foreach ($context['_seq'] as $context["_key"] => $context["product"]) {
-                // line 114
-                yield "                                                            <div class=\"col-md-4\">
-                                                                <div class=\"card h-100\">
-                                                                    <img src=\"";
-                // line 116
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(CoreExtension::getAttribute($this->env, $this->source, $context["product"], "image", [], "any", false, false, false, 116)), "html", null, true);
-                yield "\" class=\"card-img-top\" alt=\"";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["product"], "category", [], "any", false, false, false, 116), "html", null, true);
-                yield "\">
-                                                                    <div class=\"card-body\">
-                                                                        <h5 class=\"card-title\">";
-                // line 118
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["product"], "category", [], "any", false, false, false, 118), "html", null, true);
-                yield "</h5>
-                                                                        <p class=\"card-text text-success\">€";
-                // line 119
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["product"], "price", [], "any", false, false, false, 119), "html", null, true);
-                yield " / kg</p>
-                                                                        <div class=\"d-flex justify-content-between align-items-center\">
-                                                                            <span class=\"badge bg-success\">";
-                // line 121
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["product"], "type", [], "any", false, false, false, 121), "season", [], "any", false, false, false, 121), "html", null, true);
-                yield "</span>
-                                                                            <a href=\"";
-                // line 122
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_temp_shop_detail", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["product"], "id", [], "any", false, false, false, 122)]), "html", null, true);
-                yield "\" 
-                                                                               class=\"btn btn-sm btn-outline-primary\">
-                                                                                <i class=\"fas fa-eye\"></i> View
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        ";
-            }
-            $_parent = $context['_parent'];
-            unset($context['_seq'], $context['_key'], $context['product'], $context['_parent']);
-            $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 131
-            yield "                                                    </div>
-                                                </div>
-                                                ";
-        }
-        // line 134
-        yield "
-                                                <!-- Similar Products -->
-                                                ";
-        // line 136
-        if ((Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, (isset($context["recommendations"]) || array_key_exists("recommendations", $context) ? $context["recommendations"] : (function () { throw new RuntimeError('Variable "recommendations" does not exist.', 136, $this->source); })()), "similar", [], "any", false, false, false, 136)) > 0)) {
-            // line 137
-            yield "                                                <div class=\"mb-4\">
-                                                    <h5 class=\"text-info\">
-                                                        <i class=\"fas fa-layer-group me-2\"></i> Similar Products
-                                                    </h5>
-                                                    <div class=\"row g-4\">
-                                                        ";
-            // line 142
-            $context['_parent'] = $context;
-            $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["recommendations"]) || array_key_exists("recommendations", $context) ? $context["recommendations"] : (function () { throw new RuntimeError('Variable "recommendations" does not exist.', 142, $this->source); })()), "similar", [], "any", false, false, false, 142));
-            foreach ($context['_seq'] as $context["_key"] => $context["product"]) {
-                // line 143
-                yield "                                                            <div class=\"col-md-4\">
-                                                                <div class=\"card h-100\">
-                                                                    <img src=\"";
-                // line 145
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(CoreExtension::getAttribute($this->env, $this->source, $context["product"], "image", [], "any", false, false, false, 145)), "html", null, true);
-                yield "\" class=\"card-img-top\" alt=\"";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["product"], "category", [], "any", false, false, false, 145), "html", null, true);
-                yield "\">
-                                                                    <div class=\"card-body\">
-                                                                        <h5 class=\"card-title\">";
-                // line 147
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["product"], "category", [], "any", false, false, false, 147), "html", null, true);
-                yield "</h5>
-                                                                        <p class=\"card-text text-success\">€";
-                // line 148
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["product"], "price", [], "any", false, false, false, 148), "html", null, true);
-                yield " / kg</p>
-                                                                        <div class=\"d-flex justify-content-between align-items-center\">
-                                                                            <span class=\"badge bg-info\">";
-                // line 150
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["product"], "type", [], "any", false, false, false, 150), "productionMethod", [], "any", false, false, false, 150), "html", null, true);
-                yield "</span>
-                                                                            <a href=\"";
-                // line 151
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_temp_shop_detail", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["product"], "id", [], "any", false, false, false, 151)]), "html", null, true);
-                yield "\" 
-                                                                               class=\"btn btn-sm btn-outline-primary\">
-                                                                                <i class=\"fas fa-eye\"></i> View
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        ";
-            }
-            $_parent = $context['_parent'];
-            unset($context['_seq'], $context['_key'], $context['product'], $context['_parent']);
-            $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 160
-            yield "                                                    </div>
-                                                </div>
-                                                ";
-        }
-        // line 163
-        yield "
-                                                <!-- Complementary Products -->
-                                                ";
-        // line 165
-        if ((Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, (isset($context["recommendations"]) || array_key_exists("recommendations", $context) ? $context["recommendations"] : (function () { throw new RuntimeError('Variable "recommendations" does not exist.', 165, $this->source); })()), "complementary", [], "any", false, false, false, 165)) > 0)) {
-            // line 166
-            yield "                                                <div>
-                                                    <h5 class=\"text-warning\">
-                                                        <i class=\"fas fa-puzzle-piece me-2\"></i> Perfect Pairings
-                                                    </h5>
-                                                    <div class=\"row g-4\">
-                                                        ";
-            // line 171
-            $context['_parent'] = $context;
-            $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["recommendations"]) || array_key_exists("recommendations", $context) ? $context["recommendations"] : (function () { throw new RuntimeError('Variable "recommendations" does not exist.', 171, $this->source); })()), "complementary", [], "any", false, false, false, 171));
-            foreach ($context['_seq'] as $context["_key"] => $context["product"]) {
-                // line 172
-                yield "                                                            <div class=\"col-md-4\">
-                                                                <div class=\"card h-100\">
-                                                                    <img src=\"";
-                // line 174
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(CoreExtension::getAttribute($this->env, $this->source, $context["product"], "image", [], "any", false, false, false, 174)), "html", null, true);
-                yield "\" class=\"card-img-top\" alt=\"";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["product"], "category", [], "any", false, false, false, 174), "html", null, true);
-                yield "\">
-                                                                    <div class=\"card-body\">
-                                                                        <h5 class=\"card-title\">";
-                // line 176
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["product"], "category", [], "any", false, false, false, 176), "html", null, true);
-                yield "</h5>
-                                                                        <p class=\"card-text text-success\">€";
-                // line 177
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["product"], "price", [], "any", false, false, false, 177), "html", null, true);
-                yield " / kg</p>
-                                                                        <div class=\"d-flex justify-content-between align-items-center\">
-                                                                            <span class=\"badge bg-warning text-dark\">Complementary</span>
-                                                                            <a href=\"";
-                // line 180
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_temp_shop_detail", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["product"], "id", [], "any", false, false, false, 180)]), "html", null, true);
-                yield "\" 
-                                                                               class=\"btn btn-sm btn-outline-primary\">
-                                                                                <i class=\"fas fa-eye\"></i> View
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        ";
-            }
-            $_parent = $context['_parent'];
-            unset($context['_seq'], $context['_key'], $context['product'], $context['_parent']);
-            $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 189
-            yield "                                                    </div>
-                                                </div>
-                                                ";
-        }
-        // line 192
-        yield "                                            </div>
-                                        </div>
-                                    </div>
                                     ";
-        // line 195
+        // line 97
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["reviews"]) || array_key_exists("reviews", $context) ? $context["reviews"] : (function () { throw new RuntimeError('Variable "reviews" does not exist.', 195, $this->source); })()));
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["reviews"]) || array_key_exists("reviews", $context) ? $context["reviews"] : (function () { throw new RuntimeError('Variable "reviews" does not exist.', 97, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["review"]) {
-            // line 196
+            // line 98
             yield "                                        <div class=\"d-flex mb-4\">
                                             <img src=\"";
-            // line 197
+            // line 99
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("img/avatar.jpg"), "html", null, true);
             yield "\" class=\"img-fluid rounded-circle p-3\" style=\"width: 100px; height: 100px;\" alt=\"\">
                                             <div class=\"\">
                                                 <p class=\"mb-2\" style=\"font-size: 14px;\">";
-            // line 199
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["review"], "date", [], "any", false, false, false, 199), "html", null, true);
+            // line 101
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["review"], "date", [], "any", false, false, false, 101), "html", null, true);
             yield "</p>
                                                 <div class=\"d-flex justify-content-between\">
                                                     <h5>";
-            // line 201
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["review"], "author", [], "any", false, false, false, 201), "html", null, true);
+            // line 103
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["review"], "author", [], "any", false, false, false, 103), "html", null, true);
             yield "</h5>
                                                     <div class=\"d-flex mb-3\">
                                                         ";
-            // line 203
+            // line 105
             $context['_parent'] = $context;
             $context['_seq'] = CoreExtension::ensureTraversable(range(1, 5));
             foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
-                // line 204
+                // line 106
                 yield "                                                            <i class=\"fa fa-star ";
-                if (($context["i"] <= CoreExtension::getAttribute($this->env, $this->source, $context["review"], "rating", [], "any", false, false, false, 204))) {
+                if (($context["i"] <= CoreExtension::getAttribute($this->env, $this->source, $context["review"], "rating", [], "any", false, false, false, 106))) {
                     yield "text-secondary";
                 }
                 yield "\"></i>
@@ -449,12 +258,12 @@ class __TwigTemplate_2ca0f1906b83607c815f672d3592ede2 extends Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_key'], $context['i'], $context['_parent']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 206
+            // line 108
             yield "                                                    </div>
                                                 </div>
                                                 <p>";
-            // line 208
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["review"], "comment", [], "any", false, false, false, 208), "html", null, true);
+            // line 110
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["review"], "comment", [], "any", false, false, false, 110), "html", null, true);
             yield "</p>
                                             </div>
                                         </div>
@@ -463,7 +272,7 @@ class __TwigTemplate_2ca0f1906b83607c815f672d3592ede2 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['review'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 212
+        // line 114
         yield "                                </div>
                             </div>
                         </div>
@@ -476,34 +285,34 @@ class __TwigTemplate_2ca0f1906b83607c815f672d3592ede2 extends Template
                                 <h4>Related products</h4>
                                 <div class=\"row g-4\">
                                     ";
-        // line 223
+        // line 125
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["relatedProducts"]) || array_key_exists("relatedProducts", $context) ? $context["relatedProducts"] : (function () { throw new RuntimeError('Variable "relatedProducts" does not exist.', 223, $this->source); })()));
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["relatedProducts"]) || array_key_exists("relatedProducts", $context) ? $context["relatedProducts"] : (function () { throw new RuntimeError('Variable "relatedProducts" does not exist.', 125, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["featured"]) {
-            // line 224
+            // line 126
             yield "                                        <div class=\"col-lg-12\">
                                             <div class=\"rounded position-relative fruite-item\">
                                                 <div class=\"fruite-img\">
                                                     <img src=\"";
-            // line 227
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(CoreExtension::getAttribute($this->env, $this->source, $context["featured"], "image", [], "any", false, false, false, 227)), "html", null, true);
+            // line 129
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(CoreExtension::getAttribute($this->env, $this->source, $context["featured"], "image", [], "any", false, false, false, 129)), "html", null, true);
             yield "\" class=\"img-fluid w-100 rounded-top\" alt=\"";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["featured"], "category", [], "any", false, false, false, 227), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["featured"], "category", [], "any", false, false, false, 129), "html", null, true);
             yield "\">
                                                 </div>
                                                 <div class=\"p-4 border border-secondary border-top-0 rounded-bottom\">
                                                     <h4>";
-            // line 230
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["featured"], "category", [], "any", false, false, false, 230), "html", null, true);
+            // line 132
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["featured"], "category", [], "any", false, false, false, 132), "html", null, true);
             yield "</h4>
                                                     <div class=\"d-flex justify-content-between flex-lg-wrap\">
                                                         <p class=\"text-dark fs-5 fw-bold mb-0\">\$";
-            // line 232
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["featured"], "price", [], "any", false, false, false, 232), "html", null, true);
+            // line 134
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["featured"], "price", [], "any", false, false, false, 134), "html", null, true);
             yield " / kg</p>
                                                         <a href=\"";
-            // line 233
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_temp_shop_detail", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["featured"], "id", [], "any", false, false, false, 233)]), "html", null, true);
+            // line 135
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_temp_shop_detail", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["featured"], "id", [], "any", false, false, false, 135)]), "html", null, true);
             yield "\" class=\"btn border border-secondary rounded-pill px-3 text-primary\">
                                                             <i class=\"fa fa-eye me-2 text-primary\"></i> View
                                                         </a>
@@ -516,7 +325,7 @@ class __TwigTemplate_2ca0f1906b83607c815f672d3592ede2 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['featured'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 241
+        // line 143
         yield "                                </div>
                             </div>
                         </div>
@@ -557,7 +366,7 @@ class __TwigTemplate_2ca0f1906b83607c815f672d3592ede2 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  520 => 241,  506 => 233,  502 => 232,  497 => 230,  489 => 227,  484 => 224,  480 => 223,  467 => 212,  457 => 208,  453 => 206,  442 => 204,  438 => 203,  433 => 201,  428 => 199,  423 => 197,  420 => 196,  416 => 195,  411 => 192,  406 => 189,  391 => 180,  385 => 177,  381 => 176,  374 => 174,  370 => 172,  366 => 171,  359 => 166,  357 => 165,  353 => 163,  348 => 160,  333 => 151,  329 => 150,  324 => 148,  320 => 147,  313 => 145,  309 => 143,  305 => 142,  298 => 137,  296 => 136,  292 => 134,  287 => 131,  272 => 122,  268 => 121,  263 => 119,  259 => 118,  252 => 116,  248 => 114,  244 => 113,  237 => 108,  235 => 107,  214 => 89,  203 => 81,  191 => 72,  157 => 41,  146 => 33,  142 => 32,  138 => 31,  128 => 26,  110 => 11,  106 => 10,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  329 => 143,  315 => 135,  311 => 134,  306 => 132,  298 => 129,  293 => 126,  289 => 125,  276 => 114,  266 => 110,  262 => 108,  251 => 106,  247 => 105,  242 => 103,  237 => 101,  232 => 99,  229 => 98,  225 => 97,  214 => 89,  203 => 81,  191 => 72,  157 => 41,  146 => 33,  142 => 32,  138 => 31,  128 => 26,  110 => 11,  106 => 10,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -658,104 +467,6 @@ class __TwigTemplate_2ca0f1906b83607c815f672d3592ede2 extends Template
                                     </div>
                                 </div>
                                 <div class=\"tab-pane\" id=\"nav-mission\" role=\"tabpanel\" aria-labelledby=\"nav-mission-tab\">
-                                    <!-- Add this section after the product details and before the reviews -->
-                                    <div class=\"col-lg-12 mt-5\">
-                                        <div class=\"card shadow\">
-                                            <div class=\"card-header bg-primary text-white\">
-                                                <h4 class=\"mb-0\">
-                                                    <i class=\"fas fa-robot me-2\"></i> AI-Powered Recommendations
-                                                </h4>
-                                            </div>
-                                            <div class=\"card-body\">
-                                                <!-- Seasonal Recommendations -->
-                                                {% if recommendations.seasonal|length > 0 %}
-                                                <div class=\"mb-4\">
-                                                    <h5 class=\"text-success\">
-                                                        <i class=\"fas fa-calendar-alt me-2\"></i> Seasonal Picks
-                                                    </h5>
-                                                    <div class=\"row g-4\">
-                                                        {% for product in recommendations.seasonal %}
-                                                            <div class=\"col-md-4\">
-                                                                <div class=\"card h-100\">
-                                                                    <img src=\"{{ asset(product.image) }}\" class=\"card-img-top\" alt=\"{{ product.category }}\">
-                                                                    <div class=\"card-body\">
-                                                                        <h5 class=\"card-title\">{{ product.category }}</h5>
-                                                                        <p class=\"card-text text-success\">€{{ product.price }} / kg</p>
-                                                                        <div class=\"d-flex justify-content-between align-items-center\">
-                                                                            <span class=\"badge bg-success\">{{ product.type.season }}</span>
-                                                                            <a href=\"{{ path('app_temp_shop_detail', {'id': product.id}) }}\" 
-                                                                               class=\"btn btn-sm btn-outline-primary\">
-                                                                                <i class=\"fas fa-eye\"></i> View
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        {% endfor %}
-                                                    </div>
-                                                </div>
-                                                {% endif %}
-
-                                                <!-- Similar Products -->
-                                                {% if recommendations.similar|length > 0 %}
-                                                <div class=\"mb-4\">
-                                                    <h5 class=\"text-info\">
-                                                        <i class=\"fas fa-layer-group me-2\"></i> Similar Products
-                                                    </h5>
-                                                    <div class=\"row g-4\">
-                                                        {% for product in recommendations.similar %}
-                                                            <div class=\"col-md-4\">
-                                                                <div class=\"card h-100\">
-                                                                    <img src=\"{{ asset(product.image) }}\" class=\"card-img-top\" alt=\"{{ product.category }}\">
-                                                                    <div class=\"card-body\">
-                                                                        <h5 class=\"card-title\">{{ product.category }}</h5>
-                                                                        <p class=\"card-text text-success\">€{{ product.price }} / kg</p>
-                                                                        <div class=\"d-flex justify-content-between align-items-center\">
-                                                                            <span class=\"badge bg-info\">{{ product.type.productionMethod }}</span>
-                                                                            <a href=\"{{ path('app_temp_shop_detail', {'id': product.id}) }}\" 
-                                                                               class=\"btn btn-sm btn-outline-primary\">
-                                                                                <i class=\"fas fa-eye\"></i> View
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        {% endfor %}
-                                                    </div>
-                                                </div>
-                                                {% endif %}
-
-                                                <!-- Complementary Products -->
-                                                {% if recommendations.complementary|length > 0 %}
-                                                <div>
-                                                    <h5 class=\"text-warning\">
-                                                        <i class=\"fas fa-puzzle-piece me-2\"></i> Perfect Pairings
-                                                    </h5>
-                                                    <div class=\"row g-4\">
-                                                        {% for product in recommendations.complementary %}
-                                                            <div class=\"col-md-4\">
-                                                                <div class=\"card h-100\">
-                                                                    <img src=\"{{ asset(product.image) }}\" class=\"card-img-top\" alt=\"{{ product.category }}\">
-                                                                    <div class=\"card-body\">
-                                                                        <h5 class=\"card-title\">{{ product.category }}</h5>
-                                                                        <p class=\"card-text text-success\">€{{ product.price }} / kg</p>
-                                                                        <div class=\"d-flex justify-content-between align-items-center\">
-                                                                            <span class=\"badge bg-warning text-dark\">Complementary</span>
-                                                                            <a href=\"{{ path('app_temp_shop_detail', {'id': product.id}) }}\" 
-                                                                               class=\"btn btn-sm btn-outline-primary\">
-                                                                                <i class=\"fas fa-eye\"></i> View
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        {% endfor %}
-                                                    </div>
-                                                </div>
-                                                {% endif %}
-                                            </div>
-                                        </div>
-                                    </div>
                                     {% for review in reviews %}
                                         <div class=\"d-flex mb-4\">
                                             <img src=\"{{ asset('img/avatar.jpg') }}\" class=\"img-fluid rounded-circle p-3\" style=\"width: 100px; height: 100px;\" alt=\"\">

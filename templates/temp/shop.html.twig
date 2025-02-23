@@ -2,6 +2,33 @@
 
 {% block title %}Products - Fruitables{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .btn-add-product {
+            background-color: #82ae46;
+            border-color: #82ae46;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-add-product:hover {
+            background-color: #6f9339;
+            border-color: #6f9339;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn-add-product i {
+            transition: transform 0.3s ease;
+        }
+        
+        .btn-add-product:hover i {
+            transform: rotate(90deg);
+        }
+    </style>
+{% endblock %}
+
 {% block content %}
     <!-- Single Page Header start -->
     <div class="container-fluid page-header py-5">
@@ -17,7 +44,12 @@
     <!-- Products List Start-->
     <div class="container-fluid fruite py-5">
         <div class="container py-5">
-            <h1 class="mb-4">Fresh Products</h1>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="mb-0">Fresh Products</h1>
+                <a href="{{ path('admin_product_new') }}" class="btn btn-primary btn-add-product">
+                    <i class="fas fa-plus me-2"></i> Add New Product
+                </a>
+            </div>
             <div class="row g-4">
                 <div class="col-lg-12">
                     <div class="row g-4">

@@ -399,9 +399,6 @@
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
-    <service id="App\Service\AIRecommendationService" class="App\Service\AIRecommendationService" autowire="true" autoconfigure="true">
-      <argument type="service" id="doctrine.orm.default_entity_manager"/>
-    </service>
     <service id="App\Service\ChartPDFService" class="App\Service\ChartPDFService" autowire="true" autoconfigure="true"/>
     <service id="App\Service\ExcelApiService" class="App\Service\ExcelApiService" autowire="true" autoconfigure="true"/>
     <service id="App\Service\PDFReportService" class="App\Service\PDFReportService" autowire="true" autoconfigure="true"/>
@@ -436,7 +433,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.7dKS9zB"/>
+      <argument type="service" id=".service_locator.RWq9sr7"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -3324,7 +3321,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.7dKS9zB"/>
+      <argument type="service" id=".service_locator.RWq9sr7"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -7532,14 +7529,7 @@
         <argument key="qrCodeService" type="service_closure" id="App\Service\QRCodeService"/>
       </argument>
     </service>
-    <service id=".service_locator.SEDBaYW" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="aiRecommendationService" type="service_closure" id="App\Service\AIRecommendationService"/>
-        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
-      </argument>
-    </service>
-    <service id=".service_locator.7dKS9zB" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.RWq9sr7" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\AdminController::deleteProduct" type="service_closure" id=".service_locator.CsMkqUa"/>
@@ -7559,7 +7549,7 @@
         <argument key="App\Controller\AdminController::stocks" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\PageController::productQR" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\PageController::shop" type="service_closure" id=".service_locator.lVF54df"/>
-        <argument key="App\Controller\PageController::shopDetail" type="service_closure" id=".service_locator.SEDBaYW"/>
+        <argument key="App\Controller\PageController::shopDetail" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
@@ -7581,7 +7571,7 @@
         <argument key="App\Controller\AdminController:stocks" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\PageController:productQR" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\PageController:shop" type="service_closure" id=".service_locator.lVF54df"/>
-        <argument key="App\Controller\PageController:shopDetail" type="service_closure" id=".service_locator.SEDBaYW"/>
+        <argument key="App\Controller\PageController:shopDetail" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="kernel:registerContainerConfiguration" type="service_closure" id=".service_locator.y4_Zrx."/>
       </argument>
@@ -9772,7 +9762,7 @@
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.w7.f4fT" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.7dKS9zB"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.RWq9sr7"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -9797,8 +9787,7 @@
     <service id=".service_locator.h8Jkkd2" alias="messenger.retry_strategy_locator"/>
     <service id=".service_locator.bJ.4HC5" alias=".service_locator.w7.f4fT"/>
     <service id=".service_locator.SZlDvjn" alias=".service_locator.844qzXl"/>
-    <service id=".service_locator.urSCEGm" alias=".service_locator.SEDBaYW"/>
-    <service id=".service_locator.7PrN2Nw" alias=".service_locator.7dKS9zB"/>
+    <service id=".service_locator.8ZgfP6M" alias=".service_locator.RWq9sr7"/>
     <service id=".service_locator.BFrsqsn" alias=".service_locator.F9PKc.7"/>
     <service id=".service_locator.19VtFYA" alias=".service_locator.CPe6ACm"/>
     <service id=".service_locator.XtmiKbi" alias=".service_locator.MfxSDRP"/>
@@ -9828,7 +9817,6 @@
     <service id=".service_locator.lUJI3Z8" alias=".service_locator.LNwsF6h"/>
     <service id=".service_locator.khO_a56" alias=".service_locator.844qzXl"/>
     <service id=".service_locator.mO0hWwX" alias=".service_locator.lVF54df"/>
-    <service id=".service_locator.wvCtJxl" alias=".service_locator.SEDBaYW"/>
     <service id=".service_locator.Q1z.f9O" alias=".service_locator.O2p6Lk7"/>
     <service id=".service_locator.dGUCsbe" alias=".service_locator.oR77BOj"/>
     <service id=".service_locator._kIAbz1" alias=".service_locator.TpoC7U9"/>
