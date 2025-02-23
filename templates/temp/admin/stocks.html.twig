@@ -1,0 +1,69 @@
+{% extends 'temp/admin/base.html.twig' %}
+
+{% block admin_content %}
+    <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h3">Stock Management</h1>
+            <a href="{{ path('admin_stock_new') }}" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Add New Stock Entry
+            </a>
+        </div>
+
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Product</th>
+                                <th>Available Quantity</th>
+                                <th>Stock Minimum</th>
+                                <th>Stock Maximum</th>
+                                <th>Entry Date</th>
+                                <th>Exit Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if stocks is empty %}
+                                <tr>
+                                    <td colspan="8" class="text-center">No stock entries found</td>
+                                </tr>
+                            {% else %}
+                                {% for stock in stocks %}
+                                    <tr>
+                                        <td>{{ stock.id }}</td>
+                                        <td>{{ stock.product.category }}</td>
+                                        <td>{{ stock.availableQuantity }}</td>
+                                        <td>{{ stock.stockMinimum }}</td>
+                                        <td>{{ stock.stockMaximum }}</td>
+                                        <td>{{ stock.entryDate|date('Y-m-d') }}</td>
+                                        <td>{{ stock.exitDate ? stock.exitDate|date('Y-m-d') : '-' }}</td>
+                                        <td>
+                                            <a href="{{ path('admin_stock_edit', {id: stock.id}) }}" class="btn btn-sm btn-info">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="{{ path('admin_stock_delete', {id: stock.id}) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

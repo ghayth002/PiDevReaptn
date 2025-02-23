@@ -1,0 +1,177 @@
+{% extends 'temp/admin/base.html.twig' %}
+
+{% block admin_content %}
+    <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h3">{{ product ? 'Edit Product' : 'New Product' }}</h1>
+            <a href="{{ path('admin_products') }}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back to Products
+            </a>
+        </div>
+
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                {{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate', 'id': 'productForm'}}) }}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                {{ form_label(form.category, 'Category *') }}
+                                {{ form_widget(form.category, {'attr': {'class': 'form-control', 'required': 'required'}}) }}
+                                <div class="invalid-feedback">
+                                    Please enter a category name.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                {{ form_label(form.type, 'Type *') }}
+                                {{ form_widget(form.type, {'attr': {'class': 'form-control', 'required': 'required'}}) }}
+                                <div class="invalid-feedback">
+                                    Please select a product type.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group mb-3">
+                                {{ form_label(form.quantity, 'Quantity *') }}
+                                {{ form_widget(form.quantity, {'attr': {'class': 'form-control', 'required': 'required', 'min': '1'}}) }}
+                                <div class="invalid-feedback">
+                                    Please enter a valid quantity (minimum 1).
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group mb-3">
+                                {{ form_label(form.weight, 'Weight (kg) *') }}
+                                {{ form_widget(form.weight, {'attr': {'class': 'form-control', 'required': 'required', 'min': '0.1', 'step': '0.1'}}) }}
+                                <div class="invalid-feedback">
+                                    Please enter a valid weight (minimum 0.1 kg).
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group mb-3">
+                                {{ form_label(form.price, 'Price *') }}
+                                {{ form_widget(form.price, {'attr': {'class': 'form-control', 'required': 'required', 'min': '0.01', 'step': '0.01'}}) }}
+                                <div class="invalid-feedback">
+                                    Please enter a valid price (minimum 0.01).
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        {% if product and product.image %}
+                            <div class="mb-3">
+                                <label class="form-label">Current Image</label>
+                                <div>
+                                    <img src="{{ asset(product.image) }}" alt="{{ product.category }}" class="img-thumbnail" style="max-height: 200px">
+                                </div>
+                            </div>
+                        {% endif %}
+                        
+                        {{ form_label(form.imageFile, 'Product Image' ~ (product ? '' : ' *')) }}
+                        {{ form_widget(form.imageFile, {'attr': {'class': 'form-control', 'required': product ? false : true}}) }}
+                        <div class="invalid-feedback">
+                            Please select a product image.
+                        </div>
+                        <small class="form-text text-muted">
+                            Upload a JPG, PNG, or WEBP image (max 2MB)
+                        </small>
+                    </div>
+
+                    <div class="text-end mt-4">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> {{ product ? 'Update' : 'Create' }} Product
+                        </button>
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('productForm');
+            
+            form.addEventListener('submit', function(event) {
+                let isValid = true;
+                const category = form.querySelector('#product_category');
+                const type = form.querySelector('#product_type');
+                const quantity = form.querySelector('#product_quantity');
+                const weight = form.querySelector('#product_weight');
+                const price = form.querySelector('#product_price');
+                const imageFile = form.querySelector('#product_imageFile');
+                
+                // Reset previous validation states
+                form.querySelectorAll('.is-invalid').forEach(field => field.classList.remove('is-invalid'));
+                
+                // Validate each field
+                if (!category.value.trim()) {
+                    category.classList.add('is-invalid');
+                    isValid = false;
+                }
+                
+                if (!type.value) {
+                    type.classList.add('is-invalid');
+                    isValid = false;
+                }
+                
+                if (!quantity.value || quantity.value < 1) {
+                    quantity.classList.add('is-invalid');
+                    isValid = false;
+                }
+                
+                if (!weight.value || weight.value < 0.1) {
+                    weight.classList.add('is-invalid');
+                    isValid = false;
+                }
+                
+                if (!price.value || price.value < 0.01) {
+                    price.classList.add('is-invalid');
+                    isValid = false;
+                }
+                
+                // Check image only for new products
+                if (!document.querySelector('img.img-thumbnail') && !imageFile.files.length) {
+                    imageFile.classList.add('is-invalid');
+                    isValid = false;
+                }
+                
+                if (!isValid) {
+                    event.preventDefault();
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Validation Error',
+                        text: 'Please check all required fields and correct any errors.',
+                        confirmButtonColor: '#3085d6'
+                    });
+                }
+            });
+            
+            // Real-time validation
+            form.querySelectorAll('input, select').forEach(field => {
+                field.addEventListener('change', function() {
+                    if (this.value) {
+                        this.classList.remove('is-invalid');
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

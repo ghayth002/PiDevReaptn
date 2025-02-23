@@ -1,0 +1,96 @@
+{% extends 'temp/base.html.twig' %}
+
+{% block title %}{{ product.name }} - Product Details{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 600px;
+            padding: 25px;
+        }
+        .product-header {
+            border-bottom: 2px solid #82ae46;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+        }
+        .detail-group {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .detail-label {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .detail-value {
+            color: #333;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+        .metadata {
+            background: #edf2f7;
+            border-radius: 8px;
+            font-size: 0.9em;
+            margin-top: 20px;
+            padding: 15px;
+            color: #666;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">Product Details</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="{{ path('app_temp_index') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('app_temp_shop') }}">Shop</a></li>
+            <li class="breadcrumb-item active text-white">Product Details</li>
+        </ol>
+    </div>
+
+    <div class="container py-5">
+        <div class="product-card">
+            <div class="product-header">
+                <h1 class="h3 text-center text-success">{{ product.name }}</h1>
+                <p class="text-center text-muted mb-0">Product ID: {{ product.id }}</p>
+            </div>
+            
+            <div class="detail-group">
+                <div class="detail-label">Price</div>
+                <div class="detail-value">{{ product.price.value }}{{ product.price.currency }} {{ product.price.unit }}</div>
+            </div>
+            
+            <div class="detail-group">
+                <div class="detail-label">Production Method</div>
+                <div class="detail-value">{{ product.production.method }}</div>
+            </div>
+            
+            <div class="detail-group">
+                <div class="detail-label">Season</div>
+                <div class="detail-value">{{ product.production.season }}</div>
+            </div>
+            
+            <div class="metadata">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <i class="fas fa-clock me-2"></i> Scanned: {{ product.scan_date }}
+                    </div>
+                    <div class="col-md-6 text-md-end mt-2 mt-md-0">
+                        <a href="{{ path('app_temp_shop_detail', {'id': product.id}) }}" class="btn btn-primary">
+                            <i class="fas fa-shopping-cart me-2"></i> View in Shop
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %} 
