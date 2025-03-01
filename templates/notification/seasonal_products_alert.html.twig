@@ -1,6 +1,6 @@
 {% extends 'temp/base.html.twig' %}
 
-{% block title %}Seasonal Products Alert{% endblock %}
+{% block title %}Alerte de Produits Saisonniers{% endblock %}
 
 {% block content %}
 <div class="container-fluid py-5">
@@ -9,14 +9,14 @@
             <div class="col-lg-8">
                 <div class="card shadow">
                     <div class="card-header bg-success text-white">
-                        <h4 class="mb-0"><i class="fas fa-leaf me-2"></i> Seasonal Products Alert</h4>
+                        <h4 class="mb-0"><i class="fas fa-leaf me-2"></i> Alerte de Produits Saisonniers</h4>
                     </div>
                     <div class="card-body">
                         {% if notification_sent %}
                             <div class="alert alert-success">
-                                <i class="fas fa-check-circle me-2"></i> Seasonal products notification has been sent!
+                                <i class="fas fa-check-circle me-2"></i> La notification de produits saisonniers a été envoyée !
                                 {% if email %}
-                                    <p class="mb-0 small">A notification has been sent to: <strong>{{ email }}</strong></p>
+                                    <p class="mb-0 small">Une notification a été envoyée à : <strong>{{ email }}</strong></p>
                                 {% endif %}
                             </div>
                         {% endif %}
@@ -36,16 +36,16 @@
                                 <div class="alert alert-info">
                                     <h5 class="alert-heading">
                                         {% if season == 'Summer' %}
-                                            <i class="fas fa-sun me-2"></i> Summer Season
+                                            <i class="fas fa-sun me-2"></i> Saison d'Été
                                         {% elseif season == 'Fall' %}
-                                            <i class="fas fa-leaf me-2"></i> Fall Season
+                                            <i class="fas fa-leaf me-2"></i> Saison d'Automne
                                         {% elseif season == 'Winter' %}
-                                            <i class="fas fa-snowflake me-2"></i> Winter Season
+                                            <i class="fas fa-snowflake me-2"></i> Saison d'Hiver
                                         {% elseif season == 'Spring' %}
-                                            <i class="fas fa-seedling me-2"></i> Spring Season
+                                            <i class="fas fa-seedling me-2"></i> Saison de Printemps
                                         {% endif %}
                                     </h5>
-                                    <p>Based on the current temperature ({{ weather.temperature.current|round }}°C), we've determined it's {{ season }} season.</p>
+                                    <p>Selon la température actuelle ({{ weather.temperature.current|round }}°C), nous avons déterminé que c'est la saison {{ season == 'Summer' ? "d'été" : season == 'Fall' ? "d'automne" : season == 'Winter' ? "d'hiver" : "de printemps" }}.</p>
                                 </div>
                             </div>
                             
@@ -62,27 +62,27 @@
                                             {% elseif season == 'Spring' %}
                                                 <i class="fas fa-seedling me-2 text-success"></i>
                                             {% endif %}
-                                            {{ season }} Season Tips
+                                            Conseils pour la saison {{ season == 'Summer' ? "d'été" : season == 'Fall' ? "d'automne" : season == 'Winter' ? "d'hiver" : "de printemps" }}
                                         </h5>
                                     </div>
                                     <div class="card-body">
                                         <ul class="mb-0">
                                             {% if season == 'Summer' %}
-                                                <li>Water plants regularly, preferably in the early morning</li>
-                                                <li>Harvest summer fruits and vegetables at their peak</li>
-                                                <li>Monitor for pests that thrive in warm weather</li>
+                                                <li>Arrosez les plantes régulièrement, de préférence tôt le matin</li>
+                                                <li>Récoltez les fruits et légumes d'été à leur apogée</li>
+                                                <li>Surveillez les parasites qui prospèrent par temps chaud</li>
                                             {% elseif season == 'Fall' %}
-                                                <li>Prepare soil for winter by adding compost</li>
-                                                <li>Plant cool-season crops like lettuce and spinach</li>
-                                                <li>Harvest root vegetables before frost</li>
+                                                <li>Préparez le sol pour l'hiver en ajoutant du compost</li>
+                                                <li>Plantez des cultures de saison fraîche comme la laitue et les épinards</li>
+                                                <li>Récoltez les légumes-racines avant le gel</li>
                                             {% elseif season == 'Winter' %}
-                                                <li>Protect perennial plants from freezing</li>
-                                                <li>Plan your spring garden and order seeds</li>
-                                                <li>Maintain greenhouse crops with proper heating</li>
+                                                <li>Protégez les plantes vivaces du gel</li>
+                                                <li>Planifiez votre jardin de printemps et commandez des graines</li>
+                                                <li>Entretenez les cultures en serre avec un chauffage approprié</li>
                                             {% elseif season == 'Spring' %}
-                                                <li>Start seedlings indoors for summer crops</li>
-                                                <li>Prepare garden beds for planting</li>
-                                                <li>Monitor for early season pests</li>
+                                                <li>Démarrez les semis à l'intérieur pour les cultures d'été</li>
+                                                <li>Préparez les plates-bandes pour la plantation</li>
+                                                <li>Surveillez les parasites de début de saison</li>
                                             {% endif %}
                                         </ul>
                                     </div>
@@ -100,7 +100,7 @@
                             {% elseif season == 'Spring' %}
                                 <i class="fas fa-seedling me-2 text-success"></i>
                             {% endif %}
-                            Recommended {{ season }} Season Products
+                            Produits recommandés pour la saison {{ season == 'Summer' ? "d'été" : season == 'Fall' ? "d'automne" : season == 'Winter' ? "d'hiver" : "de printemps" }}
                         </h5>
                         
                         <div class="row g-3">
@@ -110,11 +110,11 @@
                                         <div class="card-body">
                                             <h5 class="card-title">{{ product.category }}</h5>
                                             <p class="card-text text-primary mb-0">{{ product.price }} DT</p>
-                                            <p class="card-text"><small class="text-muted">{{ season }} Season</small></p>
+                                            <p class="card-text"><small class="text-muted">Saison {{ season == 'Summer' ? "d'été" : season == 'Fall' ? "d'automne" : season == 'Winter' ? "d'hiver" : "de printemps" }}</small></p>
                                         </div>
                                         <div class="card-footer bg-transparent">
                                             <a href="#" class="btn btn-sm btn-outline-primary w-100">
-                                                <i class="fas fa-shopping-cart me-1"></i> Add to Cart
+                                                <i class="fas fa-shopping-cart me-1"></i> Ajouter au panier
                                             </a>
                                         </div>
                                     </div>
@@ -125,10 +125,10 @@
                     <div class="card-footer bg-light">
                         <div class="d-flex justify-content-between align-items-center">
                             <a href="{{ path('app_notifications_subscribe') }}" class="btn btn-sm btn-outline-primary">
-                                <i class="fas fa-bell me-1"></i> Manage Notifications
+                                <i class="fas fa-bell me-1"></i> Gérer les notifications
                             </a>
                             <a href="{{ path('app_temp_shop') }}" class="btn btn-sm btn-success">
-                                <i class="fas fa-shopping-basket me-1"></i> Visit Shop
+                                <i class="fas fa-shopping-basket me-1"></i> Visiter la boutique
                             </a>
                         </div>
                     </div>

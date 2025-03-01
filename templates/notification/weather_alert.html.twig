@@ -1,6 +1,6 @@
 {% extends 'temp/base.html.twig' %}
 
-{% block title %}Weather Alert{% endblock %}
+{% block title %}Alerte Météo{% endblock %}
 
 {% block content %}
 <div class="container-fluid py-5">
@@ -9,14 +9,14 @@
             <div class="col-lg-8">
                 <div class="card shadow">
                     <div class="card-header bg-primary text-white">
-                        <h4 class="mb-0"><i class="fas fa-exclamation-triangle me-2"></i> Weather Alert</h4>
+                        <h4 class="mb-0"><i class="fas fa-exclamation-triangle me-2"></i> Alerte Météo</h4>
                     </div>
                     <div class="card-body">
                         {% if notification_sent %}
                             <div class="alert alert-success">
-                                <i class="fas fa-check-circle me-2"></i> Weather alert notification has been sent!
+                                <i class="fas fa-check-circle me-2"></i> La notification d'alerte météo a été envoyée !
                                 {% if email %}
-                                    <p class="mb-0 small">A notification has been sent to: <strong>{{ email }}</strong></p>
+                                    <p class="mb-0 small">Une notification a été envoyée à : <strong>{{ email }}</strong></p>
                                 {% endif %}
                             </div>
                         {% endif %}
@@ -48,7 +48,7 @@
                                     <div class="col-4">
                                         <i class="fas fa-tint text-primary"></i>
                                         <p class="mb-0">{{ weather.humidity }}%</p>
-                                        <p class="text-muted">Humidity</p>
+                                        <p class="text-muted">Humidité</p>
                                     </div>
                                 </div>
                             </div>
@@ -67,51 +67,51 @@
                                 ">
                                     <h5 class="alert-heading">
                                         {% if weather.temperature.current > 30 %}
-                                            <i class="fas fa-thermometer-full me-2"></i> High Temperature Alert!
+                                            <i class="fas fa-thermometer-full me-2"></i> Alerte de température élevée !
                                         {% elseif weather.temperature.current < 5 %}
-                                            <i class="fas fa-thermometer-empty me-2"></i> Low Temperature Alert!
+                                            <i class="fas fa-thermometer-empty me-2"></i> Alerte de température basse !
                                         {% elseif weather.weather.main in ['Rain', 'Thunderstorm'] %}
-                                            <i class="fas fa-cloud-rain me-2"></i> Precipitation Alert!
+                                            <i class="fas fa-cloud-rain me-2"></i> Alerte de précipitations !
                                         {% else %}
-                                            <i class="fas fa-check-circle me-2"></i> Weather Conditions Normal
+                                            <i class="fas fa-check-circle me-2"></i> Conditions météorologiques normales
                                         {% endif %}
                                     </h5>
                                     
                                     <p>
                                         {% if weather.temperature.current > 30 %}
-                                            Current temperature is high ({{ weather.temperature.current|round }}°C). Stay hydrated and protect your crops from heat stress.
+                                            La température actuelle est élevée ({{ weather.temperature.current|round }}°C). Restez hydraté et protégez vos cultures du stress thermique.
                                         {% elseif weather.temperature.current < 5 %}
-                                            Current temperature is low ({{ weather.temperature.current|round }}°C). Protect sensitive crops from frost.
+                                            La température actuelle est basse ({{ weather.temperature.current|round }}°C). Protégez les cultures sensibles du gel.
                                         {% elseif weather.weather.main in ['Rain', 'Thunderstorm'] %}
-                                            Precipitation detected ({{ weather.weather.description }}). Consider postponing outdoor agricultural activities.
+                                            Précipitations détectées ({{ weather.weather.description }}). Envisagez de reporter les activités agricoles en extérieur.
                                         {% else %}
-                                            Current weather conditions are favorable for agricultural activities.
+                                            Les conditions météorologiques actuelles sont favorables aux activités agricoles.
                                         {% endif %}
                                     </p>
                                 </div>
                                 
                                 <div class="card mt-3">
                                     <div class="card-header bg-light">
-                                        <h5 class="mb-0"><i class="fas fa-leaf me-2"></i> Agricultural Recommendations</h5>
+                                        <h5 class="mb-0"><i class="fas fa-leaf me-2"></i> Recommandations agricoles</h5>
                                     </div>
                                     <div class="card-body">
                                         <ul class="mb-0">
                                             {% if weather.temperature.current > 30 %}
-                                                <li>Water plants early in the morning or late in the evening</li>
-                                                <li>Use mulch to retain soil moisture</li>
-                                                <li>Provide shade for sensitive crops</li>
+                                                <li>Arrosez les plantes tôt le matin ou tard le soir</li>
+                                                <li>Utilisez du paillis pour retenir l'humidité du sol</li>
+                                                <li>Fournissez de l'ombre aux cultures sensibles</li>
                                             {% elseif weather.temperature.current < 5 %}
-                                                <li>Cover sensitive plants with frost cloth</li>
-                                                <li>Move potted plants indoors if possible</li>
-                                                <li>Avoid watering plants in freezing temperatures</li>
+                                                <li>Couvrez les plantes sensibles avec un voile d'hivernage</li>
+                                                <li>Rentrez les plantes en pot à l'intérieur si possible</li>
+                                                <li>Évitez d'arroser les plantes par températures négatives</li>
                                             {% elseif weather.weather.main in ['Rain', 'Thunderstorm'] %}
-                                                <li>Ensure proper drainage in fields</li>
-                                                <li>Postpone fertilizer application</li>
-                                                <li>Monitor for disease development in wet conditions</li>
+                                                <li>Assurez un bon drainage dans les champs</li>
+                                                <li>Reportez l'application d'engrais</li>
+                                                <li>Surveillez le développement des maladies en conditions humides</li>
                                             {% else %}
-                                                <li>Ideal conditions for most agricultural activities</li>
-                                                <li>Good time for planting and harvesting</li>
-                                                <li>Regular monitoring of soil moisture recommended</li>
+                                                <li>Conditions idéales pour la plupart des activités agricoles</li>
+                                                <li>Bon moment pour planter et récolter</li>
+                                                <li>Surveillance régulière de l'humidité du sol recommandée</li>
                                             {% endif %}
                                         </ul>
                                     </div>
@@ -122,10 +122,10 @@
                     <div class="card-footer bg-light">
                         <div class="d-flex justify-content-between align-items-center">
                             <a href="{{ path('app_notifications_subscribe') }}" class="btn btn-sm btn-outline-primary">
-                                <i class="fas fa-bell me-1"></i> Manage Notifications
+                                <i class="fas fa-bell me-1"></i> Gérer les notifications
                             </a>
                             <a href="{{ path('app_temp_index') }}" class="btn btn-sm btn-outline-secondary">
-                                <i class="fas fa-home me-1"></i> Back to Home
+                                <i class="fas fa-home me-1"></i> Retour à l'accueil
                             </a>
                         </div>
                     </div>

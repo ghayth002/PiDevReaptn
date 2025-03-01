@@ -1,6 +1,6 @@
 {% extends 'temp/base.html.twig' %}
 
-{% block title %}Subscribe to Weather Notifications{% endblock %}
+{% block title %}S'abonner aux notifications météo{% endblock %}
 
 {% block content %}
 <div class="container-fluid py-5">
@@ -9,59 +9,59 @@
             <div class="col-lg-6">
                 <div class="card shadow">
                     <div class="card-header bg-primary text-white">
-                        <h4 class="mb-0"><i class="fas fa-bell me-2"></i> Weather Notifications</h4>
+                        <h4 class="mb-0"><i class="fas fa-bell me-2"></i> Notifications météo</h4>
                     </div>
                     <div class="card-body">
                         {% if submitted and email %}
                             <div class="alert alert-success">
-                                <i class="fas fa-check-circle me-2"></i> Thank you for subscribing! You will now receive weather alerts and seasonal product recommendations.
+                                <i class="fas fa-check-circle me-2"></i> Merci de vous être abonné ! Vous recevrez désormais des alertes météo et des recommandations de produits saisonniers.
                             </div>
-                            <p>You've subscribed with: <strong>{{ email }}</strong></p>
+                            <p>Vous vous êtes abonné avec : <strong>{{ email }}</strong></p>
                             <div class="mt-4">
                                 <a href="{{ path('app_notifications_weather_alert', {'email': email}) }}" class="btn btn-primary me-2">
-                                    <i class="fas fa-cloud-sun me-2"></i> Send Weather Alert
+                                    <i class="fas fa-cloud-sun me-2"></i> Envoyer une alerte météo
                                 </a>
                                 <a href="{{ path('app_notifications_seasonal_products_alert', {'email': email}) }}" class="btn btn-success">
-                                    <i class="fas fa-leaf me-2"></i> Send Seasonal Products Alert
+                                    <i class="fas fa-leaf me-2"></i> Envoyer une alerte de produits saisonniers
                                 </a>
                             </div>
                         {% else %}
-                            <p class="lead">Subscribe to receive weather alerts and seasonal product recommendations for your agricultural needs.</p>
+                            <p class="lead">Abonnez-vous pour recevoir des alertes météo et des recommandations de produits saisonniers pour vos besoins agricoles.</p>
                             
                             <form action="{{ path('app_notifications_subscribe') }}" method="get" class="mt-4">
                                 <div class="mb-3">
-                                    <label for="email" class="form-label">Email address</label>
-                                    <input type="email" class="form-control" id="email" name="email" required placeholder="your@email.com">
-                                    <div class="form-text">We'll send you notifications about weather conditions and seasonal products.</div>
+                                    <label for="email" class="form-label">Adresse email</label>
+                                    <input type="email" class="form-control" id="email" name="email" required placeholder="votre@email.com">
+                                    <div class="form-text">Nous vous enverrons des notifications sur les conditions météorologiques et les produits saisonniers.</div>
                                 </div>
                                 
                                 <div class="mb-3">
-                                    <label class="form-label">Notification preferences</label>
+                                    <label class="form-label">Préférences de notification</label>
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" value="" id="weatherAlerts" checked>
                                         <label class="form-check-label" for="weatherAlerts">
-                                            Weather alerts (extreme temperatures, rain, etc.)
+                                            Alertes météo (températures extrêmes, pluie, etc.)
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" value="" id="seasonalProducts" checked>
                                         <label class="form-check-label" for="seasonalProducts">
-                                            Seasonal product recommendations
+                                            Recommandations de produits saisonniers
                                         </label>
                                     </div>
                                 </div>
                                 
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="fas fa-paper-plane me-2"></i> Subscribe
+                                    <i class="fas fa-paper-plane me-2"></i> S'abonner
                                 </button>
                             </form>
                         {% endif %}
                     </div>
                     <div class="card-footer bg-light">
                         <div class="d-flex justify-content-between align-items-center">
-                            <small class="text-muted">You can unsubscribe at any time</small>
+                            <small class="text-muted">Vous pouvez vous désabonner à tout moment</small>
                             <a href="{{ path('app_temp_index') }}" class="btn btn-sm btn-outline-secondary">
-                                <i class="fas fa-home me-1"></i> Back to Home
+                                <i class="fas fa-home me-1"></i> Retour à la page d'accueil
                             </a>
                         </div>
                     </div>

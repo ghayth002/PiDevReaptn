@@ -73,7 +73,7 @@ class __TwigTemplate_50193814a7f5b44dd0b6b29c9c3d1ce9 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
 
-        yield "Weather Alert";
+        yield "Alerte Météo";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -103,7 +103,7 @@ class __TwigTemplate_50193814a7f5b44dd0b6b29c9c3d1ce9 extends Template
             <div class=\"col-lg-8\">
                 <div class=\"card shadow\">
                     <div class=\"card-header bg-primary text-white\">
-                        <h4 class=\"mb-0\"><i class=\"fas fa-exclamation-triangle me-2\"></i> Weather Alert</h4>
+                        <h4 class=\"mb-0\"><i class=\"fas fa-exclamation-triangle me-2\"></i> Alerte Météo</h4>
                     </div>
                     <div class=\"card-body\">
                         ";
@@ -111,12 +111,12 @@ class __TwigTemplate_50193814a7f5b44dd0b6b29c9c3d1ce9 extends Template
         if ((isset($context["notification_sent"]) || array_key_exists("notification_sent", $context) ? $context["notification_sent"] : (function () { throw new RuntimeError('Variable "notification_sent" does not exist.', 15, $this->source); })())) {
             // line 16
             yield "                            <div class=\"alert alert-success\">
-                                <i class=\"fas fa-check-circle me-2\"></i> Weather alert notification has been sent!
+                                <i class=\"fas fa-check-circle me-2\"></i> La notification d'alerte météo a été envoyée !
                                 ";
             // line 18
             if ((isset($context["email"]) || array_key_exists("email", $context) ? $context["email"] : (function () { throw new RuntimeError('Variable "email" does not exist.', 18, $this->source); })())) {
                 // line 19
-                yield "                                    <p class=\"mb-0 small\">A notification has been sent to: <strong>";
+                yield "                                    <p class=\"mb-0 small\">Une notification a été envoyée à : <strong>";
                 yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["email"]) || array_key_exists("email", $context) ? $context["email"] : (function () { throw new RuntimeError('Variable "email" does not exist.', 19, $this->source); })()), "html", null, true);
                 yield "</strong></p>
                                 ";
@@ -179,7 +179,7 @@ class __TwigTemplate_50193814a7f5b44dd0b6b29c9c3d1ce9 extends Template
         // line 50
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["weather"]) || array_key_exists("weather", $context) ? $context["weather"] : (function () { throw new RuntimeError('Variable "weather" does not exist.', 50, $this->source); })()), "humidity", [], "any", false, false, false, 50), "html", null, true);
         yield "%</p>
-                                        <p class=\"text-muted\">Humidity</p>
+                                        <p class=\"text-muted\">Humidité</p>
                                     </div>
                                 </div>
                             </div>
@@ -214,21 +214,21 @@ class __TwigTemplate_50193814a7f5b44dd0b6b29c9c3d1ce9 extends Template
         // line 69
         if ((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["weather"]) || array_key_exists("weather", $context) ? $context["weather"] : (function () { throw new RuntimeError('Variable "weather" does not exist.', 69, $this->source); })()), "temperature", [], "any", false, false, false, 69), "current", [], "any", false, false, false, 69) > 30)) {
             // line 70
-            yield "                                            <i class=\"fas fa-thermometer-full me-2\"></i> High Temperature Alert!
+            yield "                                            <i class=\"fas fa-thermometer-full me-2\"></i> Alerte de température élevée !
                                         ";
         } elseif ((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source,         // line 71
 (isset($context["weather"]) || array_key_exists("weather", $context) ? $context["weather"] : (function () { throw new RuntimeError('Variable "weather" does not exist.', 71, $this->source); })()), "temperature", [], "any", false, false, false, 71), "current", [], "any", false, false, false, 71) < 5)) {
             // line 72
-            yield "                                            <i class=\"fas fa-thermometer-empty me-2\"></i> Low Temperature Alert!
+            yield "                                            <i class=\"fas fa-thermometer-empty me-2\"></i> Alerte de température basse !
                                         ";
         } elseif (CoreExtension::inFilter(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source,         // line 73
 (isset($context["weather"]) || array_key_exists("weather", $context) ? $context["weather"] : (function () { throw new RuntimeError('Variable "weather" does not exist.', 73, $this->source); })()), "weather", [], "any", false, false, false, 73), "main", [], "any", false, false, false, 73), ["Rain", "Thunderstorm"])) {
             // line 74
-            yield "                                            <i class=\"fas fa-cloud-rain me-2\"></i> Precipitation Alert!
+            yield "                                            <i class=\"fas fa-cloud-rain me-2\"></i> Alerte de précipitations !
                                         ";
         } else {
             // line 76
-            yield "                                            <i class=\"fas fa-check-circle me-2\"></i> Weather Conditions Normal
+            yield "                                            <i class=\"fas fa-check-circle me-2\"></i> Conditions météorologiques normales
                                         ";
         }
         // line 78
@@ -239,27 +239,27 @@ class __TwigTemplate_50193814a7f5b44dd0b6b29c9c3d1ce9 extends Template
         // line 81
         if ((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["weather"]) || array_key_exists("weather", $context) ? $context["weather"] : (function () { throw new RuntimeError('Variable "weather" does not exist.', 81, $this->source); })()), "temperature", [], "any", false, false, false, 81), "current", [], "any", false, false, false, 81) > 30)) {
             // line 82
-            yield "                                            Current temperature is high (";
+            yield "                                            La température actuelle est élevée (";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::round(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["weather"]) || array_key_exists("weather", $context) ? $context["weather"] : (function () { throw new RuntimeError('Variable "weather" does not exist.', 82, $this->source); })()), "temperature", [], "any", false, false, false, 82), "current", [], "any", false, false, false, 82)), "html", null, true);
-            yield "°C). Stay hydrated and protect your crops from heat stress.
+            yield "°C). Restez hydraté et protégez vos cultures du stress thermique.
                                         ";
         } elseif ((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source,         // line 83
 (isset($context["weather"]) || array_key_exists("weather", $context) ? $context["weather"] : (function () { throw new RuntimeError('Variable "weather" does not exist.', 83, $this->source); })()), "temperature", [], "any", false, false, false, 83), "current", [], "any", false, false, false, 83) < 5)) {
             // line 84
-            yield "                                            Current temperature is low (";
+            yield "                                            La température actuelle est basse (";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::round(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["weather"]) || array_key_exists("weather", $context) ? $context["weather"] : (function () { throw new RuntimeError('Variable "weather" does not exist.', 84, $this->source); })()), "temperature", [], "any", false, false, false, 84), "current", [], "any", false, false, false, 84)), "html", null, true);
-            yield "°C). Protect sensitive crops from frost.
+            yield "°C). Protégez les cultures sensibles du gel.
                                         ";
         } elseif (CoreExtension::inFilter(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source,         // line 85
 (isset($context["weather"]) || array_key_exists("weather", $context) ? $context["weather"] : (function () { throw new RuntimeError('Variable "weather" does not exist.', 85, $this->source); })()), "weather", [], "any", false, false, false, 85), "main", [], "any", false, false, false, 85), ["Rain", "Thunderstorm"])) {
             // line 86
-            yield "                                            Precipitation detected (";
+            yield "                                            Précipitations détectées (";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["weather"]) || array_key_exists("weather", $context) ? $context["weather"] : (function () { throw new RuntimeError('Variable "weather" does not exist.', 86, $this->source); })()), "weather", [], "any", false, false, false, 86), "description", [], "any", false, false, false, 86), "html", null, true);
-            yield "). Consider postponing outdoor agricultural activities.
+            yield "). Envisagez de reporter les activités agricoles en extérieur.
                                         ";
         } else {
             // line 88
-            yield "                                            Current weather conditions are favorable for agricultural activities.
+            yield "                                            Les conditions météorologiques actuelles sont favorables aux activités agricoles.
                                         ";
         }
         // line 90
@@ -268,7 +268,7 @@ class __TwigTemplate_50193814a7f5b44dd0b6b29c9c3d1ce9 extends Template
                                 
                                 <div class=\"card mt-3\">
                                     <div class=\"card-header bg-light\">
-                                        <h5 class=\"mb-0\"><i class=\"fas fa-leaf me-2\"></i> Agricultural Recommendations</h5>
+                                        <h5 class=\"mb-0\"><i class=\"fas fa-leaf me-2\"></i> Recommandations agricoles</h5>
                                     </div>
                                     <div class=\"card-body\">
                                         <ul class=\"mb-0\">
@@ -276,29 +276,29 @@ class __TwigTemplate_50193814a7f5b44dd0b6b29c9c3d1ce9 extends Template
         // line 99
         if ((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["weather"]) || array_key_exists("weather", $context) ? $context["weather"] : (function () { throw new RuntimeError('Variable "weather" does not exist.', 99, $this->source); })()), "temperature", [], "any", false, false, false, 99), "current", [], "any", false, false, false, 99) > 30)) {
             // line 100
-            yield "                                                <li>Water plants early in the morning or late in the evening</li>
-                                                <li>Use mulch to retain soil moisture</li>
-                                                <li>Provide shade for sensitive crops</li>
+            yield "                                                <li>Arrosez les plantes tôt le matin ou tard le soir</li>
+                                                <li>Utilisez du paillis pour retenir l'humidité du sol</li>
+                                                <li>Fournissez de l'ombre aux cultures sensibles</li>
                                             ";
         } elseif ((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source,         // line 103
 (isset($context["weather"]) || array_key_exists("weather", $context) ? $context["weather"] : (function () { throw new RuntimeError('Variable "weather" does not exist.', 103, $this->source); })()), "temperature", [], "any", false, false, false, 103), "current", [], "any", false, false, false, 103) < 5)) {
             // line 104
-            yield "                                                <li>Cover sensitive plants with frost cloth</li>
-                                                <li>Move potted plants indoors if possible</li>
-                                                <li>Avoid watering plants in freezing temperatures</li>
+            yield "                                                <li>Couvrez les plantes sensibles avec un voile d'hivernage</li>
+                                                <li>Rentrez les plantes en pot à l'intérieur si possible</li>
+                                                <li>Évitez d'arroser les plantes par températures négatives</li>
                                             ";
         } elseif (CoreExtension::inFilter(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source,         // line 107
 (isset($context["weather"]) || array_key_exists("weather", $context) ? $context["weather"] : (function () { throw new RuntimeError('Variable "weather" does not exist.', 107, $this->source); })()), "weather", [], "any", false, false, false, 107), "main", [], "any", false, false, false, 107), ["Rain", "Thunderstorm"])) {
             // line 108
-            yield "                                                <li>Ensure proper drainage in fields</li>
-                                                <li>Postpone fertilizer application</li>
-                                                <li>Monitor for disease development in wet conditions</li>
+            yield "                                                <li>Assurez un bon drainage dans les champs</li>
+                                                <li>Reportez l'application d'engrais</li>
+                                                <li>Surveillez le développement des maladies en conditions humides</li>
                                             ";
         } else {
             // line 112
-            yield "                                                <li>Ideal conditions for most agricultural activities</li>
-                                                <li>Good time for planting and harvesting</li>
-                                                <li>Regular monitoring of soil moisture recommended</li>
+            yield "                                                <li>Conditions idéales pour la plupart des activités agricoles</li>
+                                                <li>Bon moment pour planter et récolter</li>
+                                                <li>Surveillance régulière de l'humidité du sol recommandée</li>
                                             ";
         }
         // line 116
@@ -314,13 +314,13 @@ class __TwigTemplate_50193814a7f5b44dd0b6b29c9c3d1ce9 extends Template
         // line 124
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_notifications_subscribe");
         yield "\" class=\"btn btn-sm btn-outline-primary\">
-                                <i class=\"fas fa-bell me-1\"></i> Manage Notifications
+                                <i class=\"fas fa-bell me-1\"></i> Gérer les notifications
                             </a>
                             <a href=\"";
         // line 127
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_temp_index");
         yield "\" class=\"btn btn-sm btn-outline-secondary\">
-                                <i class=\"fas fa-home me-1\"></i> Back to Home
+                                <i class=\"fas fa-home me-1\"></i> Retour à l'accueil
                             </a>
                         </div>
                     </div>
@@ -367,7 +367,7 @@ class __TwigTemplate_50193814a7f5b44dd0b6b29c9c3d1ce9 extends Template
     {
         return new Source("{% extends 'temp/base.html.twig' %}
 
-{% block title %}Weather Alert{% endblock %}
+{% block title %}Alerte Météo{% endblock %}
 
 {% block content %}
 <div class=\"container-fluid py-5\">
@@ -376,14 +376,14 @@ class __TwigTemplate_50193814a7f5b44dd0b6b29c9c3d1ce9 extends Template
             <div class=\"col-lg-8\">
                 <div class=\"card shadow\">
                     <div class=\"card-header bg-primary text-white\">
-                        <h4 class=\"mb-0\"><i class=\"fas fa-exclamation-triangle me-2\"></i> Weather Alert</h4>
+                        <h4 class=\"mb-0\"><i class=\"fas fa-exclamation-triangle me-2\"></i> Alerte Météo</h4>
                     </div>
                     <div class=\"card-body\">
                         {% if notification_sent %}
                             <div class=\"alert alert-success\">
-                                <i class=\"fas fa-check-circle me-2\"></i> Weather alert notification has been sent!
+                                <i class=\"fas fa-check-circle me-2\"></i> La notification d'alerte météo a été envoyée !
                                 {% if email %}
-                                    <p class=\"mb-0 small\">A notification has been sent to: <strong>{{ email }}</strong></p>
+                                    <p class=\"mb-0 small\">Une notification a été envoyée à : <strong>{{ email }}</strong></p>
                                 {% endif %}
                             </div>
                         {% endif %}
@@ -415,7 +415,7 @@ class __TwigTemplate_50193814a7f5b44dd0b6b29c9c3d1ce9 extends Template
                                     <div class=\"col-4\">
                                         <i class=\"fas fa-tint text-primary\"></i>
                                         <p class=\"mb-0\">{{ weather.humidity }}%</p>
-                                        <p class=\"text-muted\">Humidity</p>
+                                        <p class=\"text-muted\">Humidité</p>
                                     </div>
                                 </div>
                             </div>
@@ -434,51 +434,51 @@ class __TwigTemplate_50193814a7f5b44dd0b6b29c9c3d1ce9 extends Template
                                 \">
                                     <h5 class=\"alert-heading\">
                                         {% if weather.temperature.current > 30 %}
-                                            <i class=\"fas fa-thermometer-full me-2\"></i> High Temperature Alert!
+                                            <i class=\"fas fa-thermometer-full me-2\"></i> Alerte de température élevée !
                                         {% elseif weather.temperature.current < 5 %}
-                                            <i class=\"fas fa-thermometer-empty me-2\"></i> Low Temperature Alert!
+                                            <i class=\"fas fa-thermometer-empty me-2\"></i> Alerte de température basse !
                                         {% elseif weather.weather.main in ['Rain', 'Thunderstorm'] %}
-                                            <i class=\"fas fa-cloud-rain me-2\"></i> Precipitation Alert!
+                                            <i class=\"fas fa-cloud-rain me-2\"></i> Alerte de précipitations !
                                         {% else %}
-                                            <i class=\"fas fa-check-circle me-2\"></i> Weather Conditions Normal
+                                            <i class=\"fas fa-check-circle me-2\"></i> Conditions météorologiques normales
                                         {% endif %}
                                     </h5>
                                     
                                     <p>
                                         {% if weather.temperature.current > 30 %}
-                                            Current temperature is high ({{ weather.temperature.current|round }}°C). Stay hydrated and protect your crops from heat stress.
+                                            La température actuelle est élevée ({{ weather.temperature.current|round }}°C). Restez hydraté et protégez vos cultures du stress thermique.
                                         {% elseif weather.temperature.current < 5 %}
-                                            Current temperature is low ({{ weather.temperature.current|round }}°C). Protect sensitive crops from frost.
+                                            La température actuelle est basse ({{ weather.temperature.current|round }}°C). Protégez les cultures sensibles du gel.
                                         {% elseif weather.weather.main in ['Rain', 'Thunderstorm'] %}
-                                            Precipitation detected ({{ weather.weather.description }}). Consider postponing outdoor agricultural activities.
+                                            Précipitations détectées ({{ weather.weather.description }}). Envisagez de reporter les activités agricoles en extérieur.
                                         {% else %}
-                                            Current weather conditions are favorable for agricultural activities.
+                                            Les conditions météorologiques actuelles sont favorables aux activités agricoles.
                                         {% endif %}
                                     </p>
                                 </div>
                                 
                                 <div class=\"card mt-3\">
                                     <div class=\"card-header bg-light\">
-                                        <h5 class=\"mb-0\"><i class=\"fas fa-leaf me-2\"></i> Agricultural Recommendations</h5>
+                                        <h5 class=\"mb-0\"><i class=\"fas fa-leaf me-2\"></i> Recommandations agricoles</h5>
                                     </div>
                                     <div class=\"card-body\">
                                         <ul class=\"mb-0\">
                                             {% if weather.temperature.current > 30 %}
-                                                <li>Water plants early in the morning or late in the evening</li>
-                                                <li>Use mulch to retain soil moisture</li>
-                                                <li>Provide shade for sensitive crops</li>
+                                                <li>Arrosez les plantes tôt le matin ou tard le soir</li>
+                                                <li>Utilisez du paillis pour retenir l'humidité du sol</li>
+                                                <li>Fournissez de l'ombre aux cultures sensibles</li>
                                             {% elseif weather.temperature.current < 5 %}
-                                                <li>Cover sensitive plants with frost cloth</li>
-                                                <li>Move potted plants indoors if possible</li>
-                                                <li>Avoid watering plants in freezing temperatures</li>
+                                                <li>Couvrez les plantes sensibles avec un voile d'hivernage</li>
+                                                <li>Rentrez les plantes en pot à l'intérieur si possible</li>
+                                                <li>Évitez d'arroser les plantes par températures négatives</li>
                                             {% elseif weather.weather.main in ['Rain', 'Thunderstorm'] %}
-                                                <li>Ensure proper drainage in fields</li>
-                                                <li>Postpone fertilizer application</li>
-                                                <li>Monitor for disease development in wet conditions</li>
+                                                <li>Assurez un bon drainage dans les champs</li>
+                                                <li>Reportez l'application d'engrais</li>
+                                                <li>Surveillez le développement des maladies en conditions humides</li>
                                             {% else %}
-                                                <li>Ideal conditions for most agricultural activities</li>
-                                                <li>Good time for planting and harvesting</li>
-                                                <li>Regular monitoring of soil moisture recommended</li>
+                                                <li>Conditions idéales pour la plupart des activités agricoles</li>
+                                                <li>Bon moment pour planter et récolter</li>
+                                                <li>Surveillance régulière de l'humidité du sol recommandée</li>
                                             {% endif %}
                                         </ul>
                                     </div>
@@ -489,10 +489,10 @@ class __TwigTemplate_50193814a7f5b44dd0b6b29c9c3d1ce9 extends Template
                     <div class=\"card-footer bg-light\">
                         <div class=\"d-flex justify-content-between align-items-center\">
                             <a href=\"{{ path('app_notifications_subscribe') }}\" class=\"btn btn-sm btn-outline-primary\">
-                                <i class=\"fas fa-bell me-1\"></i> Manage Notifications
+                                <i class=\"fas fa-bell me-1\"></i> Gérer les notifications
                             </a>
                             <a href=\"{{ path('app_temp_index') }}\" class=\"btn btn-sm btn-outline-secondary\">
-                                <i class=\"fas fa-home me-1\"></i> Back to Home
+                                <i class=\"fas fa-home me-1\"></i> Retour à l'accueil
                             </a>
                         </div>
                     </div>
@@ -501,6 +501,6 @@ class __TwigTemplate_50193814a7f5b44dd0b6b29c9c3d1ce9 extends Template
         </div>
     </div>
 </div>
-{% endblock %} ", "notification/weather_alert.html.twig", "C:\\Users\\ghayt\\Downloads\\PiDevReaptn-main (1)\\PiDevReaptn-main\\templates\\notification\\weather_alert.html.twig");
+{% endblock %} ", "notification/weather_alert.html.twig", "C:\\Users\\ghayt\\OneDrive\\Desktop\\PiDevReaptn-main\\templates\\notification\\weather_alert.html.twig");
     }
 }

@@ -48,15 +48,15 @@ class __TwigTemplate_acc97511be34bb238962a5d5f4025035 extends Template
         yield "<div class=\"weather-widget card shadow-sm mb-4\">
     <div class=\"card-body\">
         <h5 class=\"card-title\">
-            <i class=\"fas fa-cloud-sun\"></i> Weather
+            <i class=\"fas fa-cloud-sun\"></i> Météo
             <div class=\"spinner-border spinner-border-sm text-primary d-none\" id=\"weather-loading\" role=\"status\">
-                <span class=\"visually-hidden\">Loading...</span>
+                <span class=\"visually-hidden\">Chargement...</span>
             </div>
         </h5>
         <div id=\"weather-content\" class=\"d-none\">
             <div class=\"d-flex align-items-center mb-2\">
                 <div id=\"weather-icon-container\" class=\"me-3\">
-                    <img id=\"weather-icon\" src=\"\" alt=\"Weather icon\" class=\"weather-icon\">
+                    <img id=\"weather-icon\" src=\"\" alt=\"Icône météo\" class=\"weather-icon\">
                 </div>
                 <div>
                     <h6 id=\"weather-location\" class=\"mb-0\"></h6>
@@ -69,7 +69,7 @@ class __TwigTemplate_acc97511be34bb238962a5d5f4025035 extends Template
                         <span id=\"weather-temp\"></span>°C
                     </div>
                     <div class=\"weather-feels-like small text-muted\">
-                        Feels like <span id=\"weather-feels-like\"></span>°C
+                        Ressenti <span id=\"weather-feels-like\"></span>°C
                     </div>
                 </div>
                 <div class=\"col-6\">
@@ -80,19 +80,19 @@ class __TwigTemplate_acc97511be34bb238962a5d5f4025035 extends Template
                         <i class=\"fas fa-temperature-high\"></i> Max: <span id=\"weather-temp-max\"></span>°C
                     </div>
                     <div class=\"weather-detail\">
-                        <i class=\"fas fa-tint\"></i> Humidity: <span id=\"weather-humidity\"></span>%
+                        <i class=\"fas fa-tint\"></i> Humidité: <span id=\"weather-humidity\"></span>%
                     </div>
                 </div>
             </div>
             <div id=\"mock-data-notice\" class=\"alert alert-info mt-2 mb-0 py-1 small d-none\">
-                <i class=\"fas fa-info-circle\"></i> Using simulated weather data. Weather API key is being activated.
+                <i class=\"fas fa-info-circle\"></i> Utilisation de données météo simulées. La clé API météo est en cours d'activation.
             </div>
             <div class=\"mt-2 text-end\">
                 <a href=\"";
         // line 45
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_notifications_subscribe");
         yield "\" class=\"btn btn-sm btn-outline-primary\">
-                    <i class=\"fas fa-bell me-1\"></i> Get Weather Alerts
+                    <i class=\"fas fa-bell me-1\"></i> Recevoir les alertes météo
                 </a>
             </div>
         </div>
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch('/api/weather/current')
         .then(response => {
             if (!response.ok) {
-                throw new Error(`HTTP error! Status: \${response.status}`);
+                throw new Error(`Erreur HTTP! Statut: \${response.status}`);
             }
             return response.json();
         })
@@ -212,15 +212,15 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class=\"weather-widget card shadow-sm mb-4\">
     <div class=\"card-body\">
         <h5 class=\"card-title\">
-            <i class=\"fas fa-cloud-sun\"></i> Weather
+            <i class=\"fas fa-cloud-sun\"></i> Météo
             <div class=\"spinner-border spinner-border-sm text-primary d-none\" id=\"weather-loading\" role=\"status\">
-                <span class=\"visually-hidden\">Loading...</span>
+                <span class=\"visually-hidden\">Chargement...</span>
             </div>
         </h5>
         <div id=\"weather-content\" class=\"d-none\">
             <div class=\"d-flex align-items-center mb-2\">
                 <div id=\"weather-icon-container\" class=\"me-3\">
-                    <img id=\"weather-icon\" src=\"\" alt=\"Weather icon\" class=\"weather-icon\">
+                    <img id=\"weather-icon\" src=\"\" alt=\"Icône météo\" class=\"weather-icon\">
                 </div>
                 <div>
                     <h6 id=\"weather-location\" class=\"mb-0\"></h6>
@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <span id=\"weather-temp\"></span>°C
                     </div>
                     <div class=\"weather-feels-like small text-muted\">
-                        Feels like <span id=\"weather-feels-like\"></span>°C
+                        Ressenti <span id=\"weather-feels-like\"></span>°C
                     </div>
                 </div>
                 <div class=\"col-6\">
@@ -244,16 +244,16 @@ document.addEventListener('DOMContentLoaded', function() {
                         <i class=\"fas fa-temperature-high\"></i> Max: <span id=\"weather-temp-max\"></span>°C
                     </div>
                     <div class=\"weather-detail\">
-                        <i class=\"fas fa-tint\"></i> Humidity: <span id=\"weather-humidity\"></span>%
+                        <i class=\"fas fa-tint\"></i> Humidité: <span id=\"weather-humidity\"></span>%
                     </div>
                 </div>
             </div>
             <div id=\"mock-data-notice\" class=\"alert alert-info mt-2 mb-0 py-1 small d-none\">
-                <i class=\"fas fa-info-circle\"></i> Using simulated weather data. Weather API key is being activated.
+                <i class=\"fas fa-info-circle\"></i> Utilisation de données météo simulées. La clé API météo est en cours d'activation.
             </div>
             <div class=\"mt-2 text-end\">
                 <a href=\"{{ path('app_notifications_subscribe') }}\" class=\"btn btn-sm btn-outline-primary\">
-                    <i class=\"fas fa-bell me-1\"></i> Get Weather Alerts
+                    <i class=\"fas fa-bell me-1\"></i> Recevoir les alertes météo
                 </a>
             </div>
         </div>
@@ -278,7 +278,7 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch('/api/weather/current')
         .then(response => {
             if (!response.ok) {
-                throw new Error(`HTTP error! Status: \${response.status}`);
+                throw new Error(`Erreur HTTP! Statut: \${response.status}`);
             }
             return response.json();
         })
@@ -333,6 +333,6 @@ document.addEventListener('DOMContentLoaded', function() {
 .weather-detail {
     font-size: 0.9rem;
 }
-</style> ", "components/weather_widget.html.twig", "C:\\Users\\ghayt\\Downloads\\PiDevReaptn-main (1)\\PiDevReaptn-main\\templates\\components\\weather_widget.html.twig");
+</style> ", "components/weather_widget.html.twig", "C:\\Users\\ghayt\\OneDrive\\Desktop\\PiDevReaptn-main\\templates\\components\\weather_widget.html.twig");
     }
 }

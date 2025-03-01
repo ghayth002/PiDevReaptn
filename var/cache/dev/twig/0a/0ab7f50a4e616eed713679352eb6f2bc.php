@@ -289,7 +289,7 @@ class __TwigTemplate_6ef3f74d3e1e777251d011b35397e9fe extends Template
                                                     <img src=\"";
             // line 118
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["product"], "qr_code_url", [], "any", false, false, false, 118), "html", null, true);
-            yield "\" alt=\"Product QR Code\" class=\"img-fluid\" style=\"max-width: 100px;\">
+            yield "\" alt=\"Code QR du produit\" class=\"img-fluid\" style=\"max-width: 100px;\">
                                                     <p class=\"small text-muted mt-2 mb-0\">Scanné: <span id=\"scanDate\"></span></p>
                                                     <p class=\"small text-muted mt-2 mb-0\">Source: <span id=\"source\"></span></p>
                                                 </div>
@@ -463,7 +463,7 @@ class __TwigTemplate_6ef3f74d3e1e777251d011b35397e9fe extends Template
                                                 </div>
                                                 <!-- QR Code Section -->
                                                 <div class=\"text-center border-top pt-3 mt-2\">
-                                                    <img src=\"{{ product.qr_code_url }}\" alt=\"Product QR Code\" class=\"img-fluid\" style=\"max-width: 100px;\">
+                                                    <img src=\"{{ product.qr_code_url }}\" alt=\"Code QR du produit\" class=\"img-fluid\" style=\"max-width: 100px;\">
                                                     <p class=\"small text-muted mt-2 mb-0\">Scanné: <span id=\"scanDate\"></span></p>
                                                     <p class=\"small text-muted mt-2 mb-0\">Source: <span id=\"source\"></span></p>
                                                 </div>
@@ -480,6 +480,6 @@ class __TwigTemplate_6ef3f74d3e1e777251d011b35397e9fe extends Template
     </div>
     <!-- Products List End-->
 {% endblock %}
-", "temp/shop.html.twig", "C:\\Users\\ghayt\\Downloads\\PiDevReaptn-main (1)\\PiDevReaptn-main\\templates\\temp\\shop.html.twig");
+", "temp/shop.html.twig", "C:\\Users\\ghayt\\OneDrive\\Desktop\\PiDevReaptn-main\\templates\\temp\\shop.html.twig");
     }
 }
