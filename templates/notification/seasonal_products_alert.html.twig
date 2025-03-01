@@ -1,0 +1,152 @@
+{% extends 'temp/base.html.twig' %}
+
+{% block title %}Seasonal Products Alert{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow">
+                    <div class="card-header bg-success text-white">
+                        <h4 class="mb-0"><i class="fas fa-leaf me-2"></i> Seasonal Products Alert</h4>
+                    </div>
+                    <div class="card-body">
+                        {% if notification_sent %}
+                            <div class="alert alert-success">
+                                <i class="fas fa-check-circle me-2"></i> Seasonal products notification has been sent!
+                                {% if email %}
+                                    <p class="mb-0 small">A notification has been sent to: <strong>{{ email }}</strong></p>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="me-3">
+                                        <img src="{{ weather.weather.icon_url }}" alt="{{ weather.weather.description }}" class="img-fluid" style="width: 60px;">
+                                    </div>
+                                    <div>
+                                        <h4 class="mb-0">{{ weather.temperature.current|round }}°C</h4>
+                                        <p class="text-muted mb-0">{{ weather.location.city }}, {{ weather.location.country|upper }}</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="alert alert-info">
+                                    <h5 class="alert-heading">
+                                        {% if season == 'Summer' %}
+                                            <i class="fas fa-sun me-2"></i> Summer Season
+                                        {% elseif season == 'Fall' %}
+                                            <i class="fas fa-leaf me-2"></i> Fall Season
+                                        {% elseif season == 'Winter' %}
+                                            <i class="fas fa-snowflake me-2"></i> Winter Season
+                                        {% elseif season == 'Spring' %}
+                                            <i class="fas fa-seedling me-2"></i> Spring Season
+                                        {% endif %}
+                                    </h5>
+                                    <p>Based on the current temperature ({{ weather.temperature.current|round }}°C), we've determined it's {{ season }} season.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="card h-100">
+                                    <div class="card-header bg-light">
+                                        <h5 class="mb-0">
+                                            {% if season == 'Summer' %}
+                                                <i class="fas fa-sun me-2 text-warning"></i>
+                                            {% elseif season == 'Fall' %}
+                                                <i class="fas fa-leaf me-2 text-danger"></i>
+                                            {% elseif season == 'Winter' %}
+                                                <i class="fas fa-snowflake me-2 text-info"></i>
+                                            {% elseif season == 'Spring' %}
+                                                <i class="fas fa-seedling me-2 text-success"></i>
+                                            {% endif %}
+                                            {{ season }} Season Tips
+                                        </h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul class="mb-0">
+                                            {% if season == 'Summer' %}
+                                                <li>Water plants regularly, preferably in the early morning</li>
+                                                <li>Harvest summer fruits and vegetables at their peak</li>
+                                                <li>Monitor for pests that thrive in warm weather</li>
+                                            {% elseif season == 'Fall' %}
+                                                <li>Prepare soil for winter by adding compost</li>
+                                                <li>Plant cool-season crops like lettuce and spinach</li>
+                                                <li>Harvest root vegetables before frost</li>
+                                            {% elseif season == 'Winter' %}
+                                                <li>Protect perennial plants from freezing</li>
+                                                <li>Plan your spring garden and order seeds</li>
+                                                <li>Maintain greenhouse crops with proper heating</li>
+                                            {% elseif season == 'Spring' %}
+                                                <li>Start seedlings indoors for summer crops</li>
+                                                <li>Prepare garden beds for planting</li>
+                                                <li>Monitor for early season pests</li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h5 class="border-bottom pb-2 mb-3">
+                            {% if season == 'Summer' %}
+                                <i class="fas fa-sun me-2 text-warning"></i>
+                            {% elseif season == 'Fall' %}
+                                <i class="fas fa-leaf me-2 text-danger"></i>
+                            {% elseif season == 'Winter' %}
+                                <i class="fas fa-snowflake me-2 text-info"></i>
+                            {% elseif season == 'Spring' %}
+                                <i class="fas fa-seedling me-2 text-success"></i>
+                            {% endif %}
+                            Recommended {{ season }} Season Products
+                        </h5>
+                        
+                        <div class="row g-3">
+                            {% for product in products %}
+                                <div class="col-md-4">
+                                    <div class="card h-100 product-card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ product.category }}</h5>
+                                            <p class="card-text text-primary mb-0">{{ product.price }} DT</p>
+                                            <p class="card-text"><small class="text-muted">{{ season }} Season</small></p>
+                                        </div>
+                                        <div class="card-footer bg-transparent">
+                                            <a href="#" class="btn btn-sm btn-outline-primary w-100">
+                                                <i class="fas fa-shopping-cart me-1"></i> Add to Cart
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="card-footer bg-light">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <a href="{{ path('app_notifications_subscribe') }}" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-bell me-1"></i> Manage Notifications
+                            </a>
+                            <a href="{{ path('app_temp_shop') }}" class="btn btn-sm btn-success">
+                                <i class="fas fa-shopping-basket me-1"></i> Visit Shop
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.product-card {
+    transition: transform 0.2s;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+</style>
+{% endblock %} 

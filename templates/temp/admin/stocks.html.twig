@@ -3,9 +3,9 @@
 {% block admin_content %}
     <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="h3">Stock Management</h1>
+            <h1 class="h3">Gestion des stocks</h1>
             <a href="{{ path('admin_stock_new') }}" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Add New Stock Entry
+                <i class="fas fa-plus"></i> Ajouter une nouvelle entrée de stock
             </a>
         </div>
 
@@ -25,19 +25,19 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Product</th>
-                                <th>Available Quantity</th>
-                                <th>Stock Minimum</th>
-                                <th>Stock Maximum</th>
-                                <th>Entry Date</th>
-                                <th>Exit Date</th>
+                                <th>Produit</th>
+                                <th>Quantité disponible</th>
+                                <th>Stock minimum</th>
+                                <th>Stock maximum</th>
+                                <th>Date d'entrée</th>
+                                <th>Date de sortie</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% if stocks is empty %}
                                 <tr>
-                                    <td colspan="8" class="text-center">No stock entries found</td>
+                                    <td colspan="8" class="text-center">Aucune entrée de stock trouvée</td>
                                 </tr>
                             {% else %}
                                 {% for stock in stocks %}
@@ -53,7 +53,7 @@
                                             <a href="{{ path('admin_stock_edit', {id: stock.id}) }}" class="btn btn-sm btn-info">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <a href="{{ path('admin_stock_delete', {id: stock.id}) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">
+                                            <a href="{{ path('admin_stock_delete', {id: stock.id}) }}" class="btn btn-sm btn-danger" onclick="return confirm('Êtes-vous sûr ?')">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </td>

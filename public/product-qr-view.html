@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fruitables Product Details</title>
+    <title>Détails du produit Fruitables</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -54,24 +54,24 @@
             </div>
             
             <div class="detail-group">
-                <div class="detail-label">Price</div>
+                <div class="detail-label">Prix</div>
                 <div class="detail-value" id="productPrice"></div>
             </div>
             
             <div class="detail-group">
-                <div class="detail-label">Production Method</div>
+                <div class="detail-label">Méthode de production</div>
                 <div class="detail-value" id="productionMethod"></div>
             </div>
             
             <div class="detail-group">
-                <div class="detail-label">Season</div>
+                <div class="detail-label">Saison</div>
                 <div class="detail-value" id="season"></div>
             </div>
             
             <div class="metadata">
                 <div class="row">
                     <div class="col-6">
-                        <small>Scanned: <span id="scanDate"></span></small>
+                        <small>Scanné: <span id="scanDate"></span></small>
                     </div>
                     <div class="col-6 text-end">
                         <small>Source: <span id="source"></span></small>
@@ -104,7 +104,7 @@
                 document.getElementById('source').textContent = product.metadata.source;
             } catch (error) {
                 console.error('Error parsing product data:', error);
-                document.body.innerHTML = '<div class="container py-4"><div class="alert alert-danger">Error loading product details</div></div>';
+                document.body.innerHTML = '<div class="container py-4"><div class="alert alert-danger">Erreur lors du chargement des détails du produit</div></div>';
             }
         }
 

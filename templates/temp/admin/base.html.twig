@@ -61,22 +61,22 @@
                         <ul class="nav flex-column">
                             <li class="nav-item">
                                 <a class="nav-link {% if app.request.get('_route') == 'admin_dashboard' %}active{% endif %}" href="{{ path('admin_dashboard') }}">
-                                    <i class="fas fa-home"></i> Dashboard
+                                    <i class="fas fa-home"></i> Tableau de bord
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link {% if app.request.get('_route') starts with 'admin_products' %}active{% endif %}" href="{{ path('admin_products') }}">
-                                    <i class="fas fa-box"></i> Products
+                                    <i class="fas fa-box"></i> Produits
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link {% if app.request.get('_route') starts with 'admin_product_types' %}active{% endif %}" href="{{ path('admin_product_types') }}">
-                                    <i class="fas fa-tags"></i> Product Types
+                                    <i class="fas fa-tags"></i> Types de produits
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link {% if app.request.get('_route') starts with 'admin_stocks' %}active{% endif %}" href="{{ path('admin_stocks') }}">
-                                    <i class="fas fa-warehouse"></i> Stock Management
+                                    <i class="fas fa-warehouse"></i> Gestion des stocks
                                 </a>
                             </li>
                         </ul>

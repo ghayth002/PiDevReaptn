@@ -3,9 +3,9 @@
 {% block admin_content %}
     <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="h3">{{ product ? 'Edit Product' : 'New Product' }}</h1>
+            <h1 class="h3">{{ product ? 'Mettre à jour le produit' : 'Nouveau produit' }}</h1>
             <a href="{{ path('admin_products') }}" class="btn btn-secondary">
-                <i class="fas fa-arrow-left"></i> Back to Products
+                <i class="fas fa-arrow-left"></i> Retour aux produits
             </a>
         </div>
 
@@ -24,10 +24,10 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                {{ form_label(form.category, 'Category *') }}
+                                {{ form_label(form.category, 'Catégorie *') }}
                                 {{ form_widget(form.category, {'attr': {'class': 'form-control', 'required': 'required'}}) }}
                                 <div class="invalid-feedback">
-                                    Please enter a category name.
+                                    Veuillez entrer un nom de catégorie.
                                 </div>
                             </div>
                         </div>
@@ -36,7 +36,7 @@
                                 {{ form_label(form.type, 'Type *') }}
                                 {{ form_widget(form.type, {'attr': {'class': 'form-control', 'required': 'required'}}) }}
                                 <div class="invalid-feedback">
-                                    Please select a product type.
+                                    Veuillez sélectionner un type de produit.
                                 </div>
                             </div>
                         </div>
@@ -45,28 +45,28 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group mb-3">
-                                {{ form_label(form.quantity, 'Quantity *') }}
+                                {{ form_label(form.quantity, 'Quantité *') }}
                                 {{ form_widget(form.quantity, {'attr': {'class': 'form-control', 'required': 'required', 'min': '1'}}) }}
                                 <div class="invalid-feedback">
-                                    Please enter a valid quantity (minimum 1).
+                                    Veuillez entrer une quantité valide (minimum 1).
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group mb-3">
-                                {{ form_label(form.weight, 'Weight (kg) *') }}
+                                {{ form_label(form.weight, 'Poids (kg) *') }}
                                 {{ form_widget(form.weight, {'attr': {'class': 'form-control', 'required': 'required', 'min': '0.1', 'step': '0.1'}}) }}
                                 <div class="invalid-feedback">
-                                    Please enter a valid weight (minimum 0.1 kg).
+                                    Veuillez entrer un poids valide (minimum 0.1 kg).
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group mb-3">
-                                {{ form_label(form.price, 'Price *') }}
+                                {{ form_label(form.price, 'Prix (DT) *') }}
                                 {{ form_widget(form.price, {'attr': {'class': 'form-control', 'required': 'required', 'min': '0.01', 'step': '0.01'}}) }}
                                 <div class="invalid-feedback">
-                                    Please enter a valid price (minimum 0.01).
+                                    Veuillez entrer un prix valide (minimum 0.01).
                                 </div>
                             </div>
                         </div>
@@ -75,26 +75,26 @@
                     <div class="form-group mb-3">
                         {% if product and product.image %}
                             <div class="mb-3">
-                                <label class="form-label">Current Image</label>
+                                <label class="form-label">Image actuelle</label>
                                 <div>
                                     <img src="{{ asset(product.image) }}" alt="{{ product.category }}" class="img-thumbnail" style="max-height: 200px">
                                 </div>
                             </div>
                         {% endif %}
                         
-                        {{ form_label(form.imageFile, 'Product Image' ~ (product ? '' : ' *')) }}
+                        {{ form_label(form.imageFile, 'Image du produit' ~ (product ? '' : ' *')) }}
                         {{ form_widget(form.imageFile, {'attr': {'class': 'form-control', 'required': product ? false : true}}) }}
                         <div class="invalid-feedback">
-                            Please select a product image.
+                            Veuillez sélectionner une image de produit.
                         </div>
                         <small class="form-text text-muted">
-                            Upload a JPG, PNG, or WEBP image (max 2MB)
+                            Téléchargez une image JPG, PNG ou WEBP (max 2 Mo)
                         </small>
                     </div>
 
                     <div class="text-end mt-4">
                         <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-save"></i> {{ product ? 'Update' : 'Create' }} Product
+                            <i class="fas fa-save"></i> {{ product ? 'Mettre à jour le produit' : 'Créer le produit' }}
                         </button>
                     </div>
                 {{ form_end(form) }}

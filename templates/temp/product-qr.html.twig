@@ -1,6 +1,6 @@
 {% extends 'temp/base.html.twig' %}
 
-{% block title %}{{ product.name }} - Product Details{% endblock %}
+{% block title %}{{ product.name }} - Détails du produit{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -49,11 +49,11 @@
 
 {% block content %}
     <div class="container-fluid page-header py-5">
-        <h1 class="text-center text-white display-6">Product Details</h1>
+        <h1 class="text-center text-white display-6">Détails du produit</h1>
         <ol class="breadcrumb justify-content-center mb-0">
-            <li class="breadcrumb-item"><a href="{{ path('app_temp_index') }}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{ path('app_temp_shop') }}">Shop</a></li>
-            <li class="breadcrumb-item active text-white">Product Details</li>
+            <li class="breadcrumb-item"><a href="{{ path('app_temp_index') }}">Accueil</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('app_temp_shop') }}">Boutique</a></li>
+            <li class="breadcrumb-item active text-white">Détails du produit</li>
         </ol>
     </div>
 
@@ -65,28 +65,28 @@
             </div>
             
             <div class="detail-group">
-                <div class="detail-label">Price</div>
+                <div class="detail-label">Prix</div>
                 <div class="detail-value">{{ product.price.value }}{{ product.price.currency }} {{ product.price.unit }}</div>
             </div>
             
             <div class="detail-group">
-                <div class="detail-label">Production Method</div>
+                <div class="detail-label">Méthode de production</div>
                 <div class="detail-value">{{ product.production.method }}</div>
             </div>
             
             <div class="detail-group">
-                <div class="detail-label">Season</div>
+                <div class="detail-label">Saison</div>
                 <div class="detail-value">{{ product.production.season }}</div>
             </div>
             
             <div class="metadata">
                 <div class="row align-items-center">
                     <div class="col-md-6">
-                        <i class="fas fa-clock me-2"></i> Scanned: {{ product.scan_date }}
+                        <i class="fas fa-clock me-2"></i> Scanné: {{ product.scan_date }}
                     </div>
                     <div class="col-md-6 text-md-end mt-2 mt-md-0">
                         <a href="{{ path('app_temp_shop_detail', {'id': product.id}) }}" class="btn btn-primary">
-                            <i class="fas fa-shopping-cart me-2"></i> View in Shop
+                            <i class="fas fa-shopping-cart me-2"></i> Voir dans la boutique
                         </a>
                     </div>
                 </div>

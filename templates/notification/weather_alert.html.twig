@@ -1,0 +1,137 @@
+{% extends 'temp/base.html.twig' %}
+
+{% block title %}Weather Alert{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0"><i class="fas fa-exclamation-triangle me-2"></i> Weather Alert</h4>
+                    </div>
+                    <div class="card-body">
+                        {% if notification_sent %}
+                            <div class="alert alert-success">
+                                <i class="fas fa-check-circle me-2"></i> Weather alert notification has been sent!
+                                {% if email %}
+                                    <p class="mb-0 small">A notification has been sent to: <strong>{{ email }}</strong></p>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center mb-4">
+                                    <div class="me-3">
+                                        <img src="{{ weather.weather.icon_url }}" alt="{{ weather.weather.description }}" class="img-fluid" style="width: 80px;">
+                                    </div>
+                                    <div>
+                                        <h3 class="mb-0">{{ weather.temperature.current|round }}°C</h3>
+                                        <p class="text-capitalize mb-0">{{ weather.weather.description }}</p>
+                                        <p class="text-muted small mb-0">{{ weather.location.city }}, {{ weather.location.country|upper }}</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="row text-center small mb-4">
+                                    <div class="col-4">
+                                        <i class="fas fa-temperature-low text-info"></i>
+                                        <p class="mb-0">{{ weather.temperature.min|round }}°C</p>
+                                        <p class="text-muted">Min</p>
+                                    </div>
+                                    <div class="col-4">
+                                        <i class="fas fa-temperature-high text-danger"></i>
+                                        <p class="mb-0">{{ weather.temperature.max|round }}°C</p>
+                                        <p class="text-muted">Max</p>
+                                    </div>
+                                    <div class="col-4">
+                                        <i class="fas fa-tint text-primary"></i>
+                                        <p class="mb-0">{{ weather.humidity }}%</p>
+                                        <p class="text-muted">Humidity</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="alert 
+                                    {% if weather.temperature.current > 30 %}
+                                        alert-danger
+                                    {% elseif weather.temperature.current < 5 %}
+                                        alert-info
+                                    {% elseif weather.weather.main in ['Rain', 'Thunderstorm'] %}
+                                        alert-warning
+                                    {% else %}
+                                        alert-success
+                                    {% endif %}
+                                ">
+                                    <h5 class="alert-heading">
+                                        {% if weather.temperature.current > 30 %}
+                                            <i class="fas fa-thermometer-full me-2"></i> High Temperature Alert!
+                                        {% elseif weather.temperature.current < 5 %}
+                                            <i class="fas fa-thermometer-empty me-2"></i> Low Temperature Alert!
+                                        {% elseif weather.weather.main in ['Rain', 'Thunderstorm'] %}
+                                            <i class="fas fa-cloud-rain me-2"></i> Precipitation Alert!
+                                        {% else %}
+                                            <i class="fas fa-check-circle me-2"></i> Weather Conditions Normal
+                                        {% endif %}
+                                    </h5>
+                                    
+                                    <p>
+                                        {% if weather.temperature.current > 30 %}
+                                            Current temperature is high ({{ weather.temperature.current|round }}°C). Stay hydrated and protect your crops from heat stress.
+                                        {% elseif weather.temperature.current < 5 %}
+                                            Current temperature is low ({{ weather.temperature.current|round }}°C). Protect sensitive crops from frost.
+                                        {% elseif weather.weather.main in ['Rain', 'Thunderstorm'] %}
+                                            Precipitation detected ({{ weather.weather.description }}). Consider postponing outdoor agricultural activities.
+                                        {% else %}
+                                            Current weather conditions are favorable for agricultural activities.
+                                        {% endif %}
+                                    </p>
+                                </div>
+                                
+                                <div class="card mt-3">
+                                    <div class="card-header bg-light">
+                                        <h5 class="mb-0"><i class="fas fa-leaf me-2"></i> Agricultural Recommendations</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul class="mb-0">
+                                            {% if weather.temperature.current > 30 %}
+                                                <li>Water plants early in the morning or late in the evening</li>
+                                                <li>Use mulch to retain soil moisture</li>
+                                                <li>Provide shade for sensitive crops</li>
+                                            {% elseif weather.temperature.current < 5 %}
+                                                <li>Cover sensitive plants with frost cloth</li>
+                                                <li>Move potted plants indoors if possible</li>
+                                                <li>Avoid watering plants in freezing temperatures</li>
+                                            {% elseif weather.weather.main in ['Rain', 'Thunderstorm'] %}
+                                                <li>Ensure proper drainage in fields</li>
+                                                <li>Postpone fertilizer application</li>
+                                                <li>Monitor for disease development in wet conditions</li>
+                                            {% else %}
+                                                <li>Ideal conditions for most agricultural activities</li>
+                                                <li>Good time for planting and harvesting</li>
+                                                <li>Regular monitoring of soil moisture recommended</li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-light">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <a href="{{ path('app_notifications_subscribe') }}" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-bell me-1"></i> Manage Notifications
+                            </a>
+                            <a href="{{ path('app_temp_index') }}" class="btn btn-sm btn-outline-secondary">
+                                <i class="fas fa-home me-1"></i> Back to Home
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

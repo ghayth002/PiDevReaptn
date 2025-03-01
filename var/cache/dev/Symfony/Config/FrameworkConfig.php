@@ -965,12 +965,23 @@ class FrameworkConfig implements \Symfony\Component\Config\Builder\ConfigBuilder
     }
 
     /**
+     * @template TValue
+     * @param TValue $value
      * Notifier configuration
-     * @default {"enabled":true,"message_bus":null,"chatter_transports":[],"texter_transports":[],"notification_on_failed_messages":false,"channel_policy":[],"admin_recipients":[]}
-    */
-    public function notifier(array $value = []): \Symfony\Config\Framework\NotifierConfig
+     * @default {"enabled":false,"message_bus":null,"chatter_transports":[],"texter_transports":[],"notification_on_failed_messages":false,"channel_policy":[],"admin_recipients":[]}
+     * @return \Symfony\Config\Framework\NotifierConfig|$this
+     * @psalm-return (TValue is array ? \Symfony\Config\Framework\NotifierConfig : static)
+     */
+    public function notifier(array $value = []): \Symfony\Config\Framework\NotifierConfig|static
     {
-        if (null === $this->notifier) {
+        if (!\is_array($value)) {
+            $this->_usedProperties['notifier'] = true;
+            $this->notifier = $value;
+
+            return $this;
+        }
+
+        if (!$this->notifier instanceof \Symfony\Config\Framework\NotifierConfig) {
             $this->_usedProperties['notifier'] = true;
             $this->notifier = new \Symfony\Config\Framework\NotifierConfig($value);
         } elseif (0 < \func_num_args()) {
@@ -1394,7 +1405,7 @@ class FrameworkConfig implements \Symfony\Component\Config\Builder\ConfigBuilder
 
         if (array_key_exists('notifier', $value)) {
             $this->_usedProperties['notifier'] = true;
-            $this->notifier = new \Symfony\Config\Framework\NotifierConfig($value['notifier']);
+            $this->notifier = \is_array($value['notifier']) ? new \Symfony\Config\Framework\NotifierConfig($value['notifier']) : $value['notifier'];
             unset($value['notifier']);
         }
 
@@ -1572,7 +1583,7 @@ class FrameworkConfig implements \Symfony\Component\Config\Builder\ConfigBuilder
             $output['secrets'] = $this->secrets->toArray();
         }
         if (isset($this->_usedProperties['notifier'])) {
-            $output['notifier'] = $this->notifier->toArray();
+            $output['notifier'] = $this->notifier instanceof \Symfony\Config\Framework\NotifierConfig ? $this->notifier->toArray() : $this->notifier;
         }
         if (isset($this->_usedProperties['rateLimiter'])) {
             $output['rate_limiter'] = $this->rateLimiter instanceof \Symfony\Config\Framework\RateLimiterConfig ? $this->rateLimiter->toArray() : $this->rateLimiter;

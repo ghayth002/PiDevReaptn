@@ -9,6 +9,7 @@ require_once __DIR__.\DIRECTORY_SEPARATOR.'TwigExtra'.\DIRECTORY_SEPARATOR.'Intl
 require_once __DIR__.\DIRECTORY_SEPARATOR.'TwigExtra'.\DIRECTORY_SEPARATOR.'CssinlinerConfig.php';
 require_once __DIR__.\DIRECTORY_SEPARATOR.'TwigExtra'.\DIRECTORY_SEPARATOR.'InkyConfig.php';
 require_once __DIR__.\DIRECTORY_SEPARATOR.'TwigExtra'.\DIRECTORY_SEPARATOR.'StringConfig.php';
+require_once __DIR__.\DIRECTORY_SEPARATOR.'TwigExtra'.\DIRECTORY_SEPARATOR.'CommonmarkConfig.php';
 
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 
@@ -24,6 +25,7 @@ class TwigExtraConfig implements \Symfony\Component\Config\Builder\ConfigBuilder
     private $cssinliner;
     private $inky;
     private $string;
+    private $commonmark;
     private $_usedProperties = [];
 
     /**
@@ -131,22 +133,11 @@ class TwigExtraConfig implements \Symfony\Component\Config\Builder\ConfigBuilder
     }
 
     /**
-     * @template TValue
-     * @param TValue $value
-     * @default {"enabled":false}
-     * @return \Symfony\Config\TwigExtra\CssinlinerConfig|$this
-     * @psalm-return (TValue is array ? \Symfony\Config\TwigExtra\CssinlinerConfig : static)
-     */
-    public function cssinliner(array $value = []): \Symfony\Config\TwigExtra\CssinlinerConfig|static
+     * @default {"enabled":true}
+    */
+    public function cssinliner(array $value = []): \Symfony\Config\TwigExtra\CssinlinerConfig
     {
-        if (!\is_array($value)) {
-            $this->_usedProperties['cssinliner'] = true;
-            $this->cssinliner = $value;
-
-            return $this;
-        }
-
-        if (!$this->cssinliner instanceof \Symfony\Config\TwigExtra\CssinlinerConfig) {
+        if (null === $this->cssinliner) {
             $this->_usedProperties['cssinliner'] = true;
             $this->cssinliner = new \Symfony\Config\TwigExtra\CssinlinerConfig($value);
         } elseif (0 < \func_num_args()) {
@@ -157,22 +148,11 @@ class TwigExtraConfig implements \Symfony\Component\Config\Builder\ConfigBuilder
     }
 
     /**
-     * @template TValue
-     * @param TValue $value
-     * @default {"enabled":false}
-     * @return \Symfony\Config\TwigExtra\InkyConfig|$this
-     * @psalm-return (TValue is array ? \Symfony\Config\TwigExtra\InkyConfig : static)
-     */
-    public function inky(array $value = []): \Symfony\Config\TwigExtra\InkyConfig|static
+     * @default {"enabled":true}
+    */
+    public function inky(array $value = []): \Symfony\Config\TwigExtra\InkyConfig
     {
-        if (!\is_array($value)) {
-            $this->_usedProperties['inky'] = true;
-            $this->inky = $value;
-
-            return $this;
-        }
-
-        if (!$this->inky instanceof \Symfony\Config\TwigExtra\InkyConfig) {
+        if (null === $this->inky) {
             $this->_usedProperties['inky'] = true;
             $this->inky = new \Symfony\Config\TwigExtra\InkyConfig($value);
         } elseif (0 < \func_num_args()) {
@@ -208,6 +188,18 @@ class TwigExtraConfig implements \Symfony\Component\Config\Builder\ConfigBuilder
         return $this->string;
     }
 
+    public function commonmark(array $value = []): \Symfony\Config\TwigExtra\CommonmarkConfig
+    {
+        if (null === $this->commonmark) {
+            $this->_usedProperties['commonmark'] = true;
+            $this->commonmark = new \Symfony\Config\TwigExtra\CommonmarkConfig($value);
+        } elseif (0 < \func_num_args()) {
+            throw new InvalidConfigurationException('The node created by "commonmark()" has already been initialized. You cannot pass values the second time you call commonmark().');
+        }
+
+        return $this->commonmark;
+    }
+
     public function getExtensionAlias(): string
     {
         return 'twig_extra';
@@ -241,13 +233,13 @@ class TwigExtraConfig implements \Symfony\Component\Config\Builder\ConfigBuilder
 
         if (array_key_exists('cssinliner', $value)) {
             $this->_usedProperties['cssinliner'] = true;
-            $this->cssinliner = \is_array($value['cssinliner']) ? new \Symfony\Config\TwigExtra\CssinlinerConfig($value['cssinliner']) : $value['cssinliner'];
+            $this->cssinliner = new \Symfony\Config\TwigExtra\CssinlinerConfig($value['cssinliner']);
             unset($value['cssinliner']);
         }
 
         if (array_key_exists('inky', $value)) {
             $this->_usedProperties['inky'] = true;
-            $this->inky = \is_array($value['inky']) ? new \Symfony\Config\TwigExtra\InkyConfig($value['inky']) : $value['inky'];
+            $this->inky = new \Symfony\Config\TwigExtra\InkyConfig($value['inky']);
             unset($value['inky']);
         }
 
@@ -255,6 +247,12 @@ class TwigExtraConfig implements \Symfony\Component\Config\Builder\ConfigBuilder
             $this->_usedProperties['string'] = true;
             $this->string = \is_array($value['string']) ? new \Symfony\Config\TwigExtra\StringConfig($value['string']) : $value['string'];
             unset($value['string']);
+        }
+
+        if (array_key_exists('commonmark', $value)) {
+            $this->_usedProperties['commonmark'] = true;
+            $this->commonmark = new \Symfony\Config\TwigExtra\CommonmarkConfig($value['commonmark']);
+            unset($value['commonmark']);
         }
 
         if ([] !== $value) {
@@ -278,13 +276,16 @@ class TwigExtraConfig implements \Symfony\Component\Config\Builder\ConfigBuilder
             $output['intl'] = $this->intl instanceof \Symfony\Config\TwigExtra\IntlConfig ? $this->intl->toArray() : $this->intl;
         }
         if (isset($this->_usedProperties['cssinliner'])) {
-            $output['cssinliner'] = $this->cssinliner instanceof \Symfony\Config\TwigExtra\CssinlinerConfig ? $this->cssinliner->toArray() : $this->cssinliner;
+            $output['cssinliner'] = $this->cssinliner->toArray();
         }
         if (isset($this->_usedProperties['inky'])) {
-            $output['inky'] = $this->inky instanceof \Symfony\Config\TwigExtra\InkyConfig ? $this->inky->toArray() : $this->inky;
+            $output['inky'] = $this->inky->toArray();
         }
         if (isset($this->_usedProperties['string'])) {
             $output['string'] = $this->string instanceof \Symfony\Config\TwigExtra\StringConfig ? $this->string->toArray() : $this->string;
+        }
+        if (isset($this->_usedProperties['commonmark'])) {
+            $output['commonmark'] = $this->commonmark->toArray();
         }
 
         return $output;

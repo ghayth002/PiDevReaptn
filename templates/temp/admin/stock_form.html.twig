@@ -3,9 +3,9 @@
 {% block admin_content %}
     <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="h3">{{ stock ? 'Edit Stock Entry' : 'New Stock Entry' }}</h1>
+            <h1 class="h3">{{ stock ? 'Mettre à jour l'entrée de stock' : 'Nouvelle entrée de stock' }}</h1>
             <a href="{{ path('admin_stocks') }}" class="btn btn-secondary">
-                <i class="fas fa-arrow-left"></i> Back to Stocks
+                <i class="fas fa-arrow-left"></i> Retour aux stocks
             </a>
         </div>
 
@@ -24,19 +24,19 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                {{ form_label(form.product, 'Product *') }}
+                                {{ form_label(form.product, 'Produit *') }}
                                 {{ form_widget(form.product, {'attr': {'class': 'form-control', 'required': 'required'}}) }}
                                 <div class="invalid-feedback">
-                                    Please select a product.
+                                    Veuillez sélectionner un produit.
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                {{ form_label(form.availableQuantity, 'Available Quantity *') }}
+                                {{ form_label(form.availableQuantity, 'Quantité disponible *') }}
                                 {{ form_widget(form.availableQuantity, {'attr': {'class': 'form-control', 'required': 'required', 'min': '1'}}) }}
                                 <div class="invalid-feedback">
-                                    Please enter a valid quantity (minimum 1).
+                                    Veuillez entrer une quantité valide (minimum 1).
                                 </div>
                             </div>
                         </div>
@@ -45,19 +45,19 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                {{ form_label(form.stockMinimum, 'Minimum Stock *') }}
+                                {{ form_label(form.stockMinimum, 'Stock minimum *') }}
                                 {{ form_widget(form.stockMinimum, {'attr': {'class': 'form-control', 'required': 'required', 'min': '0'}}) }}
                                 <div class="invalid-feedback">
-                                    Please enter a minimum stock level.
+                                    Veuillez entrer un niveau de stock minimum.
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                {{ form_label(form.stockMaximum, 'Maximum Stock *') }}
+                                {{ form_label(form.stockMaximum, 'Stock maximum *') }}
                                 {{ form_widget(form.stockMaximum, {'attr': {'class': 'form-control', 'required': 'required', 'min': '0'}}) }}
                                 <div class="invalid-feedback">
-                                    Please enter a maximum stock level.
+                                    Veuillez entrer un niveau de stock maximum.
                                 </div>
                             </div>
                         </div>
@@ -66,25 +66,25 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                {{ form_label(form.entryDate, 'Entry Date *') }}
+                                {{ form_label(form.entryDate, 'Date d'entrée *') }}
                                 {{ form_widget(form.entryDate, {'attr': {'class': 'form-control', 'required': 'required'}}) }}
                                 <div class="invalid-feedback">
-                                    Please select an entry date.
+                                    Veuillez sélectionner une date d'entrée.
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                {{ form_label(form.exitDate, 'Exit Date') }}
+                                {{ form_label(form.exitDate, 'Date de sortie') }}
                                 {{ form_widget(form.exitDate, {'attr': {'class': 'form-control'}}) }}
-                                <small class="form-text text-muted">Optional. Leave empty if the stock is still available.</small>
+                                <small class="form-text text-muted">Optionnel. Laissez vide si le stock est toujours disponible.</small>
                             </div>
                         </div>
                     </div>
 
                     <div class="text-end mt-4">
                         <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-save"></i> {{ stock ? 'Update' : 'Create' }} Stock Entry
+                            <i class="fas fa-save"></i> {{ stock ? 'Mettre à jour l'entrée de stock' : 'Créer l'entrée de stock' }}
                         </button>
                     </div>
                 {{ form_end(form) }}

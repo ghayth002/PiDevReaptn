@@ -1,6 +1,6 @@
 {% extends 'temp/base.html.twig' %}
 
-{% block title %}Products - Fruitables{% endblock %}
+{% block title %}Produits - Fruitables{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -32,11 +32,11 @@
 {% block content %}
     <!-- Single Page Header start -->
     <div class="container-fluid page-header py-5">
-        <h1 class="text-center text-white display-6">Products</h1>
+        <h1 class="text-center text-white display-6">Produits</h1>
         <ol class="breadcrumb justify-content-center mb-0">
-            <li class="breadcrumb-item"><a href="{{ path('app_temp_index') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('app_temp_index') }}">Accueil</a></li>
             <li class="breadcrumb-item"><a href="#">Pages</a></li>
-            <li class="breadcrumb-item active text-white">Products</li>
+            <li class="breadcrumb-item active text-white">Produits</li>
         </ol>
     </div>
     <!-- Single Page Header End -->
@@ -45,9 +45,9 @@
     <div class="container-fluid fruite py-5">
         <div class="container py-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h1 class="mb-0">Fresh Products</h1>
+                <h1 class="mb-0">Produits frais</h1>
                 <a href="{{ path('admin_product_new') }}" class="btn btn-primary btn-add-product">
-                    <i class="fas fa-plus me-2"></i> Add New Product
+                    <i class="fas fa-plus me-2"></i> Ajouter un nouveau produit
                 </a>
             </div>
             <div class="row g-4">
@@ -55,16 +55,16 @@
                     <div class="row g-4">
                         <div class="col-xl-3">
                             <div class="input-group w-100 mx-auto d-flex">
-                                <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
+                                <input type="search" class="form-control p-3" placeholder="mots-clés" aria-describedby="search-icon-1">
                                 <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
                             </div>
                         </div>
                         <div class="col-6"></div>
                         <div class="col-xl-3">
                             <div class="bg-light ps-3 py-3 rounded d-flex justify-content-between mb-4">
-                                <label for="productType">Filter by Type:</label>
+                                <label for="productType">Filtrer par type:</label>
                                 <select id="productType" name="productType" class="border-0 form-select-sm bg-light me-3" onchange="window.location.href=this.value">
-                                    <option value="{{ path('app_temp_shop') }}">All Types</option>
+                                    <option value="{{ path('app_temp_shop') }}">Tous les types</option>
                                     {% for type in productTypes %}
                                         <option value="{{ path('app_temp_shop', {'type': type.id}) }}" {% if app.request.get('type') is not null and app.request.get('type') == type.id %}selected{% endif %}>
                                             {{ type.season }} - {{ type.productionMethod }}
@@ -79,21 +79,20 @@
                             <div class="row g-4">
                                 <div class="col-lg-12">
                                     <div class="mb-3">
-                                        <h4>Seasons</h4>
+                                        <h4>Saisons</h4>
                                         <ul class="list-unstyled fruite-categorie">
-                                            {% for category in categories %}
-                                                <li>
-                                                    <div class="d-flex justify-content-between fruite-name">
-                                                        <a href="{{ path('app_temp_shop', {'type': category.types[0].id}) }}">
-                                                            <i class="fas {{ category.icon }} me-2"></i>{{ category.name }}
-                                                        </a>
-                                                        <span>({{ category.count }})</span>
-                                                    </div>
-                                                </li>
-                                            {% endfor %}
+                                            <li><div class="d-flex justify-content-between fruite-name"><a href="#"><i class="fas fa-sun"></i>Été</a><span>(3)</span></div></li>
+                                            <li><div class="d-flex justify-content-between fruite-name"><a href="#"><i class="fas fa-leaf"></i>Automne</a><span>(4)</span></div></li>
+                                            <li><div class="d-flex justify-content-between fruite-name"><a href="#"><i class="fas fa-snowflake"></i>Printemps</a><span>(0)</span></div></li>
                                         </ul>
                                     </div>
                                 </div>
+                                
+                                <!-- Weather Widget -->
+                                <div class="col-lg-12">
+                                    {% include 'components/weather_widget.html.twig' %}
+                                </div>
+                                <!-- End Weather Widget -->
                             </div>
                         </div>
                         <div class="col-lg-9">
@@ -107,17 +106,18 @@
                                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">{{ product.type.productionMethod }}</div>
                                             <div class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                 <h4>{{ product.category }}</h4>
-                                                <p>Fresh from our suppliers</p>
+                                                <p>Frais de nos fournisseurs</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap mb-3">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">${{ product.price }} / kg</p>
+                                                    <p class="text-dark fs-5 fw-bold mb-0">{{ product.price }} DT / kg</p>
                                                     <a href="{{ path('app_temp_shop_detail', {'id': product.id}) }}" class="btn border border-secondary rounded-pill px-3 text-primary">
-                                                        <i class="fa fa-shopping-bag me-2 text-primary"></i> View Details
+                                                        <i class="fa fa-shopping-bag me-2 text-primary"></i> Voir les détails
                                                     </a>
                                                 </div>
                                                 <!-- QR Code Section -->
                                                 <div class="text-center border-top pt-3 mt-2">
                                                     <img src="{{ product.qr_code_url }}" alt="Product QR Code" class="img-fluid" style="max-width: 100px;">
-                                                    <p class="small text-muted mt-2 mb-0">Scan for details</p>
+                                                    <p class="small text-muted mt-2 mb-0">Scanné: <span id="scanDate"></span></p>
+                                                    <p class="small text-muted mt-2 mb-0">Source: <span id="source"></span></p>
                                                 </div>
                                             </div>
                                         </div>

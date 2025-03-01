@@ -363,6 +363,24 @@
         <argument type="service" id=".service_locator.O2p6Lk7.App\Controller\AdminController"/>
       </call>
     </service>
+    <service id="App\Controller\Api\WeatherController" class="App\Controller\Api\WeatherController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <argument type="service" id=".debug.http_client"/>
+      <argument type="service" id="App\Service\MockWeatherService"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.O2p6Lk7.App\Controller\Api\WeatherController"/>
+      </call>
+    </service>
+    <service id="App\Controller\NotificationController" class="App\Controller\NotificationController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <argument type="service" id="App\Service\NotificationService"/>
+      <argument type="service" id="App\Service\MockWeatherService"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.O2p6Lk7.App\Controller\NotificationController"/>
+      </call>
+    </service>
     <service id="App\Controller\PageController" class="App\Controller\PageController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -401,11 +419,20 @@
     </service>
     <service id="App\Service\ChartPDFService" class="App\Service\ChartPDFService" autowire="true" autoconfigure="true"/>
     <service id="App\Service\ExcelApiService" class="App\Service\ExcelApiService" autowire="true" autoconfigure="true"/>
+    <service id="App\Service\MockWeatherService" class="App\Service\MockWeatherService" autowire="true" autoconfigure="true"/>
+    <service id="App\Service\NotificationService" class="App\Service\NotificationService" autowire="true" autoconfigure="true">
+      <argument type="service" id="notifier"/>
+      <argument type="service" id="chatter"/>
+      <argument type="service" id="App\Service\MockWeatherService"/>
+    </service>
     <service id="App\Service\PDFReportService" class="App\Service\PDFReportService" autowire="true" autoconfigure="true"/>
     <service id="App\Service\QRCodeService" class="App\Service\QRCodeService" autowire="true" autoconfigure="true">
       <argument type="service" id="router.default"/>
     </service>
     <service id="App\Service\ReportService" class="App\Service\ReportService" autowire="true" autoconfigure="true"/>
+    <service id="App\Service\WeatherService" class="App\Service\WeatherService" autowire="true" autoconfigure="true">
+      <argument type="service" id=".debug.http_client"/>
+    </service>
     <service id="argument_metadata_factory" class="Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadataFactory"/>
     <service id="argument_resolver.backed_enum_resolver" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\BackedEnumValueResolver">
       <tag priority="100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\BackedEnumValueResolver">controller.argument_value_resolver</tag>
@@ -1971,10 +1998,6 @@
     <service id="mailer.transport_factory" class="Symfony\Component\Mailer\Transport">
       <argument type="tagged_iterator" tag="mailer.transport_factory"/>
     </service>
-    <service id="mailer.default_transport" class="Symfony\Component\Mailer\Transport\TransportInterface">
-      <argument>%env(MAILER_DSN)%</argument>
-      <factory service="mailer.transport_factory" method="fromString"/>
-    </service>
     <service id="mailer.messenger.message_handler" class="Symfony\Component\Mailer\Messenger\MessageHandler">
       <tag name="messenger.message_handler"/>
       <argument type="service" id="mailer.transports"/>
@@ -2004,6 +2027,24 @@
     </service>
     <service id="mailer.transport_factory.abstract" class="Symfony\Component\Mailer\Transport\AbstractTransportFactory" abstract="true">
       <tag name="monolog.logger" channel="mailer"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+      <argument type="service" id=".debug.http_client" on-invalid="ignore"/>
+      <argument type="service" id="monolog.logger.mailer" on-invalid="ignore"/>
+    </service>
+    <service id="mailer.transport_factory.gmail" class="Symfony\Component\Mailer\Bridge\Google\Transport\GmailTransportFactory">
+      <tag name="mailer.transport_factory"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+      <argument type="service" id=".debug.http_client" on-invalid="ignore"/>
+      <argument type="service" id="monolog.logger.mailer" on-invalid="ignore"/>
+    </service>
+    <service id="mailer.transport_factory.mailgun" class="Symfony\Component\Mailer\Bridge\Mailgun\Transport\MailgunTransportFactory">
+      <tag name="mailer.transport_factory"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+      <argument type="service" id=".debug.http_client" on-invalid="ignore"/>
+      <argument type="service" id="monolog.logger.mailer" on-invalid="ignore"/>
+    </service>
+    <service id="mailer.transport_factory.sendgrid" class="Symfony\Component\Mailer\Bridge\Sendgrid\Transport\SendgridTransportFactory">
+      <tag name="mailer.transport_factory"/>
       <argument type="service" id="debug.event_dispatcher"/>
       <argument type="service" id=".debug.http_client" on-invalid="ignore"/>
       <argument type="service" id="monolog.logger.mailer" on-invalid="ignore"/>
@@ -2762,6 +2803,14 @@
           <argument>onConsoleCommand</argument>
         </argument>
         <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>kernel.request</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="turbo.kernel.request_listener"/>
+          <argument>__invoke</argument>
+        </argument>
+        <argument>256</argument>
       </call>
       <call method="addListener">
         <argument>Symfony\Component\Security\Http\Event\CheckPassportEvent</argument>
@@ -4489,8 +4538,15 @@
     <service id="notifier.failed_message_listener" class="Symfony\Component\Notifier\EventListener\SendFailedMessageToNotifierListener">
       <argument type="service" id="notifier"/>
     </service>
+    <service id="chatter" class="Symfony\Component\Notifier\Chatter">
+      <argument type="service" id="chatter.transports"/>
+      <argument type="service" id="debug.traced.messenger.bus.default" on-invalid="null"/>
+      <argument type="service" id="debug.event_dispatcher" on-invalid="ignore"/>
+    </service>
     <service id="chatter.transports" class="Symfony\Component\Notifier\Transport\Transports">
-      <argument type="collection"/>
+      <argument type="collection">
+        <argument key="telegram">%env(TELEGRAM_DSN)%</argument>
+      </argument>
       <factory service="chatter.transport_factory" method="fromStrings"/>
     </service>
     <service id="chatter.transport_factory" class="Symfony\Component\Notifier\Transport">
@@ -4519,6 +4575,11 @@
       <tag name="kernel.event_subscriber"/>
     </service>
     <service id="notifier.transport_factory.abstract" class="Symfony\Component\Notifier\Transport\AbstractTransportFactory" abstract="true">
+      <argument type="service" id="debug.event_dispatcher"/>
+      <argument type="service" id=".debug.http_client" on-invalid="ignore"/>
+    </service>
+    <service id="notifier.transport_factory.telegram" class="Symfony\Component\Notifier\Bridge\Telegram\TelegramTransportFactory">
+      <tag name="chatter.transport_factory"/>
       <argument type="service" id="debug.event_dispatcher"/>
       <argument type="service" id=".debug.http_client" on-invalid="ignore"/>
     </service>
@@ -5737,6 +5798,12 @@
         <argument type="service" id="turbo.twig.extension"/>
       </call>
       <call method="addExtension">
+        <argument type="service" id="twig.extension.cssinliner"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="twig.extension.inky"/>
+      </call>
+      <call method="addExtension">
         <argument type="service" id="stimulus.twig_extension"/>
       </call>
       <call method="addGlobal">
@@ -6154,7 +6221,17 @@
       <argument type="service" id="turbo.broadcaster.action_renderer"/>
       <argument>null</argument>
     </service>
+    <service id="turbo.kernel.request_listener" class="Symfony\UX\Turbo\Request\RequestListener">
+      <tag name="kernel.event_listener" event="kernel.request" priority="256"/>
+      <tag name="container.hot_path"/>
+    </service>
     <service id="twig.missing_extension_suggestor" class="Twig\Extra\TwigExtraBundle\MissingExtensionSuggestor"/>
+    <service id="twig.extension.cssinliner" class="Twig\Extra\CssInliner\CssInlinerExtension">
+      <tag name="twig.extension"/>
+    </service>
+    <service id="twig.extension.inky" class="Twig\Extra\Inky\InkyExtension">
+      <tag name="twig.extension"/>
+    </service>
     <service id="security.authorization_checker" class="Symfony\Component\Security\Core\Authorization\AuthorizationChecker">
       <argument type="service" id="security.token_storage"/>
       <argument type="service" id="debug.security.access.decision_manager"/>
@@ -7059,6 +7136,12 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\AdminController" class="App\Controller\AdminController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\AdminController" class="App\Controller\AdminController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\AdminController" class="App\Controller\AdminController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Api\WeatherController" class="App\Controller\Api\WeatherController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Api\WeatherController" class="App\Controller\Api\WeatherController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Api\WeatherController" class="App\Controller\Api\WeatherController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\NotificationController" class="App\Controller\NotificationController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\NotificationController" class="App\Controller\NotificationController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\NotificationController" class="App\Controller\NotificationController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\PageController" class="App\Controller\PageController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\PageController" class="App\Controller\PageController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\PageController" class="App\Controller\PageController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -8195,6 +8278,18 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.O2p6Lk7" method="withContext"/>
     </service>
+    <service id=".service_locator.O2p6Lk7.App\Controller\Api\WeatherController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Api\WeatherController"/>
+      <argument>App\Controller\Api\WeatherController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.O2p6Lk7" method="withContext"/>
+    </service>
+    <service id=".service_locator.O2p6Lk7.App\Controller\NotificationController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\NotificationController"/>
+      <argument>App\Controller\NotificationController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.O2p6Lk7" method="withContext"/>
+    </service>
     <service id=".service_locator.O2p6Lk7.App\Controller\PageController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\PageController"/>
       <argument>App\Controller\PageController</argument>
@@ -8376,6 +8471,8 @@
         <argument type="collection">
           <argument>App\Kernel</argument>
           <argument>App\Controller\AdminController</argument>
+          <argument>App\Controller\Api\WeatherController</argument>
+          <argument>App\Controller\NotificationController</argument>
           <argument>App\Controller\PageController</argument>
           <argument>Doctrine\Bundle\DoctrineBundle\Controller\ProfilerController</argument>
         </argument>
@@ -9634,7 +9731,8 @@
     <service id="Symfony\Contracts\HttpClient\HttpClientInterface" alias=".debug.http_client"/>
     <service id="mailer" alias="mailer.mailer"/>
     <service id="Symfony\Component\Mailer\MailerInterface" alias="mailer.mailer"/>
-    <service id="Symfony\Component\Mailer\Transport\TransportInterface" alias="mailer.default_transport"/>
+    <service id="mailer.default_transport" alias="mailer.transports"/>
+    <service id="Symfony\Component\Mailer\Transport\TransportInterface" alias="mailer.transports"/>
     <service id="Symfony\Component\Translation\Reader\TranslationReaderInterface" alias="translation.reader"/>
     <service id="Symfony\Component\Translation\Extractor\ExtractorInterface" alias="translation.extractor"/>
     <service id="Symfony\Component\Translation\Writer\TranslationWriterInterface" alias="translation.writer"/>
@@ -9709,6 +9807,7 @@
     <service id="Symfony\Component\Messenger\MessageBusInterface" alias="debug.traced.messenger.bus.default"/>
     <service id="messenger.failure_transports.default" alias="messenger.transport.failed"/>
     <service id="Symfony\Component\Notifier\NotifierInterface" alias="notifier"/>
+    <service id="Symfony\Component\Notifier\ChatterInterface" alias="chatter"/>
     <service id="notifier.logger_notification_listener" alias="notifier.notification_logger_listener">
       <deprecated package="symfony/framework-bundle" version="6.3">The "%alias_id%" service is deprecated, use "notifier.notification_logger_listener" instead.</deprecated>
     </service>

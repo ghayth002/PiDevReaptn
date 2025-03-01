@@ -3,9 +3,9 @@
 {% block admin_content %}
     <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="h3">Product Types</h1>
+            <h1 class="h3">Types de produits</h1>
             <a href="{{ path('admin_product_type_new') }}" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Add New Product Type
+                <i class="fas fa-plus"></i> Ajouter un nouveau type de produit
             </a>
         </div>
 
@@ -16,10 +16,11 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Season</th>
-                                <th>Production Method</th>
-                                <th>Harvest Date</th>
-                                <th>Preservation Duration</th>
+                                <th>Saison</th>
+                                <th>Méthode de production</th>
+                                <th>Date de récolte</th>
+                                <th>Durée de conservation</th>
+                                <th>Prix</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -31,11 +32,12 @@
                                     <td>{{ type.productionMethod }}</td>
                                     <td>{{ type.harvestDate|date('Y-m-d') }}</td>
                                     <td>{{ type.preservationDuration }} days</td>
+                                    <td>{{ type.price }} DT</td>
                                     <td>
                                         <a href="{{ path('admin_product_type_edit', {id: type.id}) }}" class="btn btn-sm btn-info">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a href="{{ path('admin_product_type_delete', {id: type.id}) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">
+                                        <a href="{{ path('admin_product_type_delete', {id: type.id}) }}" class="btn btn-sm btn-danger" onclick="return confirm('Êtes-vous sûr ?')">
                                             <i class="fas fa-trash"></i>
                                         </a>
                                     </td>

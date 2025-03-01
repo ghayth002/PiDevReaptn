@@ -3,15 +3,15 @@
 {% block admin_content %}
     <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="h3">Products</h1>
+            <h1 class="h3">Produits</h1>
             <a href="{{ path('admin_product_new') }}" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Add New Product
+                <i class="fas fa-plus"></i> Ajouter un nouveau produit
             </a>
         </div>
 
         {# Debug info #}
         <div class="alert alert-info">
-            Number of products: {{ products|length }}
+            Nombre de produits : {{ products|length }}
         </div>
 
         <div class="card shadow mb-4">
@@ -22,18 +22,18 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Image</th>
-                                <th>Category</th>
+                                <th>Catégorie</th>
                                 <th>Type</th>
-                                <th>Quantity</th>
-                                <th>Weight</th>
-                                <th>Price</th>
+                                <th>Quantité</th>
+                                <th>Poids</th>
+                                <th>Prix</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% if products is empty %}
                                 <tr>
-                                    <td colspan="8" class="text-center">No products found</td>
+                                    <td colspan="8" class="text-center">Aucun produit trouvé</td>
                                 </tr>
                             {% else %}
                                 {% for product in products %}
@@ -50,12 +50,12 @@
                                         <td>{{ product.type ? product.type.productionMethod : 'N/A' }}</td>
                                         <td>{{ product.quantity }}</td>
                                         <td>{{ product.weight }}kg</td>
-                                        <td>€{{ product.price }}</td>
+                                        <td>{{ product.price }} DT</td>
                                         <td>
                                             <a href="{{ path('admin_product_edit', {id: product.id}) }}" class="btn btn-sm btn-info">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <a href="{{ path('admin_product_delete', {id: product.id}) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">
+                                            <a href="{{ path('admin_product_delete', {id: product.id}) }}" class="btn btn-sm btn-danger" onclick="return confirm('Êtes-vous sûr ?')">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </td>

@@ -4,11 +4,11 @@
     <div class="container-fluid">
         <!-- Page Header -->
         <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1 class="h3">Dashboard Overview</h1>
-    <a href="{{ path('admin_export_dashboard_report') }}" class="btn btn-primary">
-        <i class="fas fa-file-pdf"></i> Export Full Report
-    </a>
-</div>
+            <h1 class="h3">Aperçu du tableau de bord</h1>
+            <a href="{{ path('admin_export_dashboard_report') }}" class="btn btn-primary">
+                <i class="fas fa-file-pdf"></i> Exporter le rapport complet
+            </a>
+        </div>
 
         <!-- Statistics Cards -->
         <div class="row mb-4">
@@ -18,7 +18,7 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Products</div>
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total des produits</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{ products|length }}</div>
                             </div>
                             <div class="col-auto">
@@ -35,7 +35,7 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Value</div>
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Valeur totale</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">€{{ total_value }}</div>
                             </div>
                             <div class="col-auto">
@@ -52,7 +52,7 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Stock Health</div>
+                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Santé des stocks</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{ stock_health }}%</div>
                             </div>
                             <div class="col-auto">
@@ -69,7 +69,7 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Low Stock Alerts</div>
+                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Alertes de faible stock</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{ low_stock_count }}</div>
                             </div>
                             <div class="col-auto">
@@ -87,7 +87,7 @@
             <div class="col-xl-6 mb-4">
                 <div class="card shadow">
                     <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                        <h6 class="m-0 font-weight-bold text-primary">Product Categories Distribution</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Répartition des catégories de produits</h6>
                         <button class="btn btn-sm btn-outline-primary export-chart" data-chart="categoryChart">
                             <i class="fas fa-download"></i>
                         </button>
@@ -102,7 +102,7 @@
             <div class="col-xl-6 mb-4">
                 <div class="card shadow">
                     <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                        <h6 class="m-0 font-weight-bold text-success">Stock Health Analysis</h6>
+                        <h6 class="m-0 font-weight-bold text-success">Analyse de la santé des stocks</h6>
                         <button class="btn btn-sm btn-outline-success export-chart" data-chart="stockHealthChart">
                             <i class="fas fa-download"></i>
                         </button>
@@ -117,7 +117,7 @@
             <div class="col-xl-6 mb-4">
                 <div class="card shadow">
                     <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                        <h6 class="m-0 font-weight-bold text-info">Product Type Analysis</h6>
+                        <h6 class="m-0 font-weight-bold text-info">Analyse des types de produits</h6>
                         <button class="btn btn-sm btn-outline-info export-chart" data-chart="productTypeChart">
                             <i class="fas fa-download"></i>
                         </button>
@@ -132,7 +132,7 @@
             <div class="col-xl-6 mb-4">
                 <div class="card shadow">
                     <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                        <h6 class="m-0 font-weight-bold text-warning">Stock Levels Analysis</h6>
+                        <h6 class="m-0 font-weight-bold text-warning">Analyse des niveaux de stock</h6>
                         <button class="btn btn-sm btn-outline-warning export-chart" data-chart="stockLevelsChart">
                             <i class="fas fa-download"></i>
                         </button>
@@ -149,18 +149,18 @@
             <div class="col-12">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-danger">Low Stock Alerts</h6>
+                        <h6 class="m-0 font-weight-bold text-danger">Alertes de faible stock</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Product</th>
-                                        <th>Current Stock</th>
-                                        <th>Minimum Required</th>
-                                        <th>Status</th>
-                                        <th>Action Required</th>
+                                        <th>Produit</th>
+                                        <th>Stock actuel</th>
+                                        <th>Minimum requis</th>
+                                        <th>Statut</th>
+                                        <th>Action requise</th>
                                     </tr>
                                 </thead>
                                 <tbody>

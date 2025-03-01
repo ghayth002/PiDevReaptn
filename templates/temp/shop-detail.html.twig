@@ -1,15 +1,15 @@
 {% extends 'temp/base.html.twig' %}
 
-{% block title %}Product Detail - Fruitables{% endblock %}
+{% block title %}Détails du produit - Fruitables{% endblock %}
 
 {% block content %}
     <!-- Single Page Header start -->
     <div class="container-fluid page-header py-5">
-        <h1 class="text-center text-white display-6">Product Detail</h1>
+        <h1 class="text-center text-white display-6">Détails du produit</h1>
         <ol class="breadcrumb justify-content-center mb-0">
-            <li class="breadcrumb-item"><a href="{{ path('app_temp_index') }}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{ path('app_temp_shop') }}">Products</a></li>
-            <li class="breadcrumb-item active text-white">Product Detail</li>
+            <li class="breadcrumb-item"><a href="{{ path('app_temp_index') }}">Accueil</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('app_temp_shop') }}">Produits</a></li>
+            <li class="breadcrumb-item active text-white">Détails du produit</li>
         </ol>
     </div>
     <!-- Single Page Header End -->
@@ -29,8 +29,12 @@
                         </div>
                         <div class="col-lg-6">
                             <h4 class="fw-bold mb-3">{{ product.category }}</h4>
-                            <p class="mb-3">Season: {{ product.type.season }}</p>
-                            <h5 class="fw-bold mb-3">${{ product.price }} / kg</h5>
+                            <p class="mb-3">Prix: {{ product.price }} €</p>
+                            <p class="mb-3">Méthode de production: {{ product.type.productionMethod }}</p>
+                            <p class="mb-3">Saison: {{ product.type.season }}</p>
+                            <p class="small text-muted mt-2 mb-0">Scanné: <span id="scanDate"></span></p>
+                            <p class="small text-muted mt-2 mb-0">Source: <span id="source"></span></p>
+                            <h5 class="fw-bold mb-3">{{ product.price }} DT / kg</h5>
                             <div class="d-flex mb-4">
                                 <i class="fa fa-star text-secondary"></i>
                                 <i class="fa fa-star text-secondary"></i>
@@ -53,7 +57,7 @@
                                 </div>
                             </div>
                             <button class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary">
-                                <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
+                                <i class="fa fa-shopping-bag me-2 text-primary"></i> Ajouter au panier
                             </button>
                         </div>
                         <div class="col-lg-12">
@@ -64,7 +68,7 @@
                                         aria-controls="nav-about" aria-selected="true">Description</button>
                                     <button class="nav-link border-white border-bottom-0" type="button" role="tab"
                                         id="nav-mission-tab" data-bs-toggle="tab" data-bs-target="#nav-mission"
-                                        aria-controls="nav-mission" aria-selected="false">Reviews</button>
+                                        aria-controls="nav-mission" aria-selected="false">Avis</button>
                                 </div>
                             </nav>
                             <div class="tab-content mb-5">
@@ -75,7 +79,7 @@
                                             <div class="col-6">
                                                 <div class="row bg-light align-items-center text-center justify-content-center py-2">
                                                     <div class="col-6">
-                                                        <p class="mb-0">Season</p>
+                                                        <p class="mb-0">Saison</p>
                                                     </div>
                                                     <div class="col-6">
                                                         <p class="mb-0">{{ product.type.season }}</p>
@@ -83,7 +87,7 @@
                                                 </div>
                                                 <div class="row text-center align-items-center justify-content-center py-2">
                                                     <div class="col-6">
-                                                        <p class="mb-0">Production Method</p>
+                                                        <p class="mb-0">Méthode de production</p>
                                                     </div>
                                                     <div class="col-6">
                                                         <p class="mb-0">{{ product.type.productionMethod }}</p>
@@ -120,7 +124,7 @@
                     <div class="row g-4 fruite">
                         <div class="col-lg-12">
                             <div class="mb-4">
-                                <h4>Related products</h4>
+                                <h4>Produits associés</h4>
                                 <div class="row g-4">
                                     {% for featured in relatedProducts %}
                                         <div class="col-lg-12">
@@ -131,9 +135,9 @@
                                                 <div class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                     <h4>{{ featured.category }}</h4>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
-                                                        <p class="text-dark fs-5 fw-bold mb-0">${{ featured.price }} / kg</p>
+                                                        <p class="text-dark fs-5 fw-bold mb-0">€{{ featured.price }} / kg</p>
                                                         <a href="{{ path('app_temp_shop_detail', {'id': featured.id}) }}" class="btn border border-secondary rounded-pill px-3 text-primary">
-                                                            <i class="fa fa-eye me-2 text-primary"></i> View
+                                                            <i class="fa fa-eye me-2 text-primary"></i> Voir
                                                         </a>
                                                     </div>
                                                 </div>
